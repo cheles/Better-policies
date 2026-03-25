@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — BetterStart</title>
+    <meta name="description"
+        content="BetterStart privacy policy. We don't collect your data. Everything stays on your device. No accounts, no tracking, no cloud.">
+    <meta property="og:title" content="Privacy Policy — BetterStart">
+    <meta property="og:description"
+        content="BetterStart privacy policy. We don't collect your data. Everything stays on your device.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://betterstart.app/privacy.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy — BetterStart">
+    <meta name="twitter:description" content="We don't collect your data. Period. Read our full privacy policy.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #2d2d3a;
+            background: #F8F7F4;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #6C5CE7;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #8B7CF7;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        /* ===== TOP NAV ===== */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: #555;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .top-nav-links a:hover {
+            color: #6C5CE7;
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: #6C5CE7;
+            font-weight: 600;
+        }
+
+        .top-nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ===== HEADER ===== */
+        .page-header {
+            background: linear-gradient(135deg, #6C5CE7, #8B7CF7, #a78bfa);
+            color: #fff;
+            padding: 60px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: none;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page-header-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header h1 span {
+            color: #a78bfa;
+        }
+
+        .page-header .effective-date {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #a78bfa;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .tldr {
+            background: rgba(108, 92, 231, 0.08);
+            border-left: 4px solid #6C5CE7;
+            border-radius: 0 14px 14px 0;
+            padding: 24px 28px;
+            margin-bottom: 48px;
+        }
+
+        .tldr h2 {
+            font-size: 1.1rem;
+            color: #6C5CE7;
+            margin-bottom: 8px;
+        }
+
+        .tldr p {
+            font-size: 1.05rem;
+            color: #3a3a4a;
+            line-height: 1.7;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 1.35rem;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .icon {
+            font-size: 1.3rem;
+        }
+
+        .section p,
+        .section ul {
+            font-size: 1rem;
+            color: #4a4a5a;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            padding: 4px 0 4px 28px;
+            position: relative;
+        }
+
+        .section ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #6C5CE7;
+            font-weight: 700;
+        }
+
+        .section p+p {
+            margin-top: 12px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: #6C5CE7;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.06);
+            margin: 40px 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0d0d12;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-heart {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer .footer-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        footer .footer-links a {
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.2s;
+        }
+
+        footer .footer-links a:hover {
+            color: #6C5CE7;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .content {
+                padding: 40px 16px 60px;
+            }
+
+            .tldr {
+                padding: 20px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/">BetterDog</a>
+                <a href="../betterpawplay/">BetterPawPlay</a>
+                <a href="../betterstart/" class="active">BetterStart</a>
+                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                    class="nav-linkedin">LinkedIn</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HEADER ===== -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <a href="index.html" class="back-link">← Back to home</a>
+            <div class="page-header-icon" aria-hidden="true">🔒</div>
+            <h1>Privacy <span>Policy</span></h1>
+            <p class="effective-date">Effective date: March 25, 2026</p>
+        </div>
+    </header>
+
+    <!-- ===== CONTENT ===== -->
+    <main class="content">
+
+        <!-- TL;DR -->
+        <div class="tldr">
+            <h2>TL;DR</h2>
+            <p>We don't collect your data. Period. BetterStart runs entirely on your device. No accounts, no cloud, no
+                tracking, no ads. Your information never leaves your phone unless you choose to export an encrypted
+                backup.</p>
+        </div>
+
+        <!-- 1. What Data the App Collects -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">📋</span> 1. Information You Provide</h2>
+            <p>BetterStart only stores data that <span class="highlight">you explicitly enter</span>. This includes:</p>
+            <ul>
+                <li>Tasks you add in the Launch module</li>
+                <li>Counter names and tap counts in the Tally module</li>
+                <li>Energy check-in entries in the Energy module</li>
+                <li>Your settings preferences (theme, display options)</li>
+            </ul>
+            <p>BetterStart does not automatically collect any data. No device identifiers, no usage analytics, no
+                location data, no diagnostics. Nothing.</p>
+        </div>
+
+        <!-- 2. Where Data Is Stored -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">📱</span> 2. Where Your Data Lives</h2>
+            <p>All your data is stored <span class="highlight">solely on your device</span> using local storage
+                (AsyncStorage). It is never uploaded, synced, or transmitted to any server, cloud service, or third
+                party.</p>
+            <p>We do not operate servers. We do not have a backend. There is nowhere for your data to go, even if we
+                wanted it to (we don't).</p>
+        </div>
+
+        <!-- 3. Data Sharing -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🚫</span> 3. Data Sharing</h2>
+            <p><span class="highlight">None. Zero. Never.</span></p>
+            <p>No third party receives any data from BetterStart. We do not sell, rent, trade, or share your information
+                with anyone, for any reason. There are no analytics SDKs, no advertising networks, no social media
+                trackers, and no third-party services embedded in the app.</p>
+        </div>
+
+        <!-- 4. Analytics and Tracking -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">📊</span> 4. Analytics and Tracking</h2>
+            <p>BetterStart contains <span class="highlight">no analytics or tracking of any kind</span>. We do not use
+                Firebase, Google Analytics, Mixpanel, Amplitude, or any other analytics tool. We have no idea how you
+                use the app, how often you open it, or what features you prefer. That's by design.</p>
+        </div>
+
+        <!-- 5. Advertising -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🛑</span> 5. Advertising</h2>
+            <p>BetterStart contains <span class="highlight">no advertisements</span>. There are no ad SDKs, no ad
+                networks, and no sponsored content. You paid for the app. That's the whole business model.</p>
+        </div>
+
+        <!-- 6. AI and On-Device Processing -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🧠</span> 6. AI and On-Device Processing</h2>
+            <p>BetterStart includes an optional on-device AI feature that generates personalised micro-steps for your
+                tasks. This is powered by a <span class="highlight">small language model (SmolLM2-360M) that runs
+                    entirely on your device</span>. The model is downloaded once and operates offline — your tasks and
+                prompts are never sent to any server.</p>
+            <p>The AI feature is opt-in and disabled by default. When enabled:</p>
+            <ul>
+                <li>All inference happens on your phone — no cloud API calls</li>
+                <li>Your task text never leaves your device</li>
+                <li>The model file is stored in your app's sandboxed directory</li>
+                <li>A regex-based fallback always provides steps if the AI is unavailable or disabled</li>
+            </ul>
+        </div>
+
+        <!-- 6a. AI Safety Guardrails -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🛡️</span> 6a. AI Safety Guardrails</h2>
+            <p>BetterStart applies comprehensive safety measures following the <span class="highlight">OWASP LLM Top
+                    10</span> security framework:</p>
+            <ul>
+                <li><strong>Input sanitisation:</strong> Task text is length-capped, stripped of special characters, and
+                    normalised (Unicode, zero-width characters, leet speak) before reaching the model</li>
+                <li><strong>Output filtering:</strong> 9 safety regex filters block shame words, harmful content, PII
+                    (emails, phone numbers, URLs), code injection, chat tokens, and placeholder text</li>
+                <li><strong>Rate limiting:</strong> Inference is limited to one request per second with a
+                    concurrent-request guard and a 15-second timeout</li>
+                <li><strong>Supply chain security:</strong> The model is downloaded from a single pinned HTTPS URL with
+                    file-size verification</li>
+                <li><strong>No external access:</strong> The AI cannot call APIs, access the internet, execute code, or
+                    modify app state — it produces plain text only</li>
+                <li><strong>Memory management:</strong> The model is automatically released from memory when the app
+                    goes to the background</li>
+            </ul>
+        </div>
+
+        <!-- 6b. AI Accuracy Disclaimer -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">⚠️</span> 6b. AI Accuracy and Limitations</h2>
+            <p><span class="highlight">The AI may produce inaccurate, irrelevant, or unhelpful micro-steps.</span>
+                Language models — even carefully filtered ones — can hallucinate, repeat themselves, or generate steps
+                that don't match your task. This is a known limitation of on-device AI, especially small models
+                optimised for speed over accuracy.</p>
+            <p>To mitigate this:</p>
+            <ul>
+                <li>A relevance check compares generated steps against the original task and rejects poor matches</li>
+                <li>A "These don't feel right — try different steps" button lets you reject bad output with one tap</li>
+                <li>A regex-based fallback covering 25 common task categories is always available and does not rely on
+                    AI</li>
+                <li>The AI is entirely optional — you can disable it at any time in Settings and still use the full app
+                </li>
+            </ul>
+            <p>BetterStart's AI is designed to help you start tasks, not to give advice. It does not provide medical,
+                financial, legal, or therapeutic guidance. If a generated step seems wrong or unhelpful, simply dismiss
+                it.</p>
+        </div>
+
+        <div class="section">
+            <p>BetterStart also includes smart insights and pattern recognition features. These are powered by pure
+                TypeScript rules running entirely on your device. No data is sent to any cloud AI service.</p>
+        </div>
+
+        <!-- 7. Children's Privacy -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">👶</span> 7. Children's Privacy</h2>
+            <p>BetterStart does not knowingly collect personal information from children under the age of 13. Since the
+                app does not collect or transmit any data whatsoever, there is no mechanism through which children's
+                data could be gathered or shared.</p>
+            <p>If you believe a child under 13 has somehow provided personal information through the app, please contact
+                us at <a href="mailto:claudiu@adsdesign.ro">claudiu@adsdesign.ro</a> and we will address your concern.
+            </p>
+        </div>
+
+        <!-- 8. Data Deletion -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🗑️</span> 8. Deleting Your Data</h2>
+            <p>You are in complete control of your data:</p>
+            <ul>
+                <li><strong>In-app:</strong> Go to Settings > Clear All Data to delete everything at any time</li>
+                <li><strong>Uninstall:</strong> Removing the app from your device deletes all associated data</li>
+            </ul>
+            <p>Since your data exists only on your device, deleting it is immediate and permanent. There are no backups
+                on our end, no residual copies, and nothing to request deletion of.</p>
+        </div>
+
+        <!-- 9. Encrypted Backup -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🔐</span> 9. Encrypted Backup &amp; Restore</h2>
+            <p>BetterStart includes an optional backup feature that lets you export your data as an <span
+                    class="highlight">encrypted file</span>, protected by a password you choose. Encryption uses a
+                SHA-256-based stream cipher via the expo-crypto library.</p>
+            <ul>
+                <li><strong>Export:</strong> Creates an encrypted <code>.json</code> file containing your tasks,
+                    counters, energy check-ins, and settings</li>
+                <li><strong>Your password:</strong> The file is encrypted with a password only you know. We never see,
+                    store, or have access to your password</li>
+                <li><strong>Your choice where to save:</strong> The file is shared via your device's share sheet. You
+                    decide where it goes: Files app, iCloud Drive, Google Drive, email, AirDrop, or anywhere else</li>
+                <li><strong>Import:</strong> Restore from a backup file by providing your password</li>
+            </ul>
+            <p>We never receive, transmit, or store your backup files. The entire process happens on your device. The
+                encryption ensures that even if someone else gets the file, they cannot read it without your password.
+            </p>
+        </div>
+
+        <!-- 10. App Permissions -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">🔑</span> 10. App Permissions</h2>
+            <p>BetterStart requests only the <span class="highlight">minimum permissions</span> needed to function.
+                Here's exactly what we ask for, and why:</p>
+            <ul>
+                <li><strong>Internet access:</strong> Used to download the optional AI model file and to process
+                    in-app purchases through the App Store or Google Play. Your personal data is never sent over the
+                    network</li>
+                <li><strong>Vibration / Haptics:</strong> Powers the tactile feedback you feel when tapping buttons,
+                    spinning the roulette, or interacting with counters</li>
+                <li><strong>File access</strong> (Android 12 and below only)<strong>:</strong> Needed to import and
+                    export encrypted backup files. On Android 13 and newer, the system's built-in file picker handles
+                    this without requiring a separate permission</li>
+                <li><strong>Check available storage</strong> (iOS)<strong>:</strong> Lets the app check whether your
+                    device has enough free space before downloading the ~386 MB AI model, so it can warn you if space
+                    is low</li>
+                <li><strong>Save preferences locally:</strong> Stores your settings (theme, display options) on your
+                    device so they're remembered next time you open the app</li>
+            </ul>
+            <p>BetterStart does <span class="highlight">not</span> request access to your camera, microphone,
+                location, contacts, calendar, photos, or any other sensitive data. The app does not use push
+                notifications and does not run in the background.</p>
+        </div>
+
+        <!-- 11. Third-Party Payment Processors -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">💳</span> 11. Purchases and Payment</h2>
+            <p>BetterStart is available as a one-time purchase through the Apple App Store and Google Play Store. All
+                payment processing is handled entirely by Apple and Google. We never receive, process, or store your
+                payment information, credit card details, or billing address.</p>
+            <p>For information about how your payment data is handled, please refer to:</p>
+            <ul>
+                <li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's
+                        Privacy Policy</a></li>
+                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's
+                        Privacy Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- 12. Changes to This Policy -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">📝</span> 12. Changes to This Policy</h2>
+            <p>We may update this privacy policy from time to time. If we make changes, we will update the "Effective
+                date" at the top of this page. We encourage you to review this policy periodically.</p>
+            <p>Given the nature of the app (fully offline, no data collection), significant changes are unlikely. But if
+                our practices ever change, you'll know about it here first.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Contact -->
+        <div class="section">
+            <h2><span class="icon" aria-hidden="true">💬</span> Contact Us</h2>
+            <p>If you have any questions about this privacy policy or the app, reach out:</p>
+            <p><strong>Email:</strong> <a href="mailto:claudiu@adsdesign.ro">claudiu@adsdesign.ro</a></p>
+            <p style="margin-top: 16px; color: #6b6b80; font-size: 0.9rem;">BetterStart is developed and maintained by
+                BetterStart.</p>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <p class="footer-heart">Made with 💜 for brains that work differently</p>
+        <p>&copy; 2026 BetterStart. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:claudiu@adsdesign.ro">Support</a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>

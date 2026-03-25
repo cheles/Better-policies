@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Apps — Privacy &amp; Policies</title>
+    <meta name="description" content="Privacy policies and support pages for Better Apps.">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <style>
+        :root {
+            --bg: #0e0e0e;
+            --surface: #1a1a1a;
+            --border: #2a2a2a;
+            --text: #e5e5e5;
+            --text-muted: #888;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --badge-bg: #111;
+            --badge-hover-bg: #1a1a2e;
+            --radius: 14px;
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f5f5;
+            --surface: #ffffff;
+            --border: #e0e0e0;
+            --text: #1a1a1a;
+            --text-muted: #666;
+            --accent: #4f46e5;
+            --accent-hover: #6366f1;
+            --badge-bg: #f0f0f0;
+            --badge-hover-bg: #e8e8f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── Nav ── */
+        nav {
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 24px;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        nav .nav-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--text);
+        }
+
+        nav .nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--accent);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 80px 32px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent), #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /* ── Grid ── */
+        .grid {
+            max-width: 960px;
+            width: 100%;
+            margin: 48px auto 0;
+            padding: 0 32px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: border-color 0.25s, transform 0.25s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .card .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+        }
+
+        .card .icon-emoji {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .card .desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            flex: 1;
+        }
+
+        .card .links {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .card .links a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            transition: color 0.2s;
+        }
+
+        .card .links a:hover {
+            color: var(--accent-hover);
+        }
+
+        .card .links a::after {
+            content: ' →';
+        }
+
+        /* ── Store Badges ── */
+        .badges {
+            display: flex;
+            gap: 10px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 14px;
+            min-width: 154px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--badge-bg);
+            font-size: 0.72rem;
+            color: var(--text);
+            transition: border-color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+
+        a.badge:hover {
+            border-color: var(--accent);
+            background: var(--badge-hover-bg);
+        }
+
+        .badge svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .badge .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .badge .badge-text .small {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+        }
+
+        .badge .badge-text .main {
+            font-weight: 600;
+            font-size: 0.78rem;
+        }
+
+        .badge.coming-soon {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        /* ── Footer ── */
+        footer {
+            margin-top: auto;
+            padding: 32px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .hero {
+                padding: 48px 20px 32px;
+            }
+
+            .grid {
+                padding: 0 20px 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-links">
+            <a href="./" class="active">BetterCorp</a>
+            <a href="betterclimber/">BetterClimber</a>
+            <a href="betterlife/">BetterLife</a>
+            <a href="betterdog/">BetterDog</a>
+            <a href="betterpawplay/">BetterPawPlay</a>
+            <a href="betterstart/">BetterStart</a>
+            <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                class="nav-linkedin">LinkedIn </a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <h1>Apps built with care.<br><span class="gradient">Policies kept simple.</span></h1>
+        <p>Privacy policies, support pages, and everything legal for apps under the Better umbrella.</p>
+    </section>
+
+    <div class="grid">
+
+        <!-- BetterClimber -->
+        <div class="card">
+            <img class="icon" src="img/betterclimber-icon.png" alt="BetterClimber icon">
+            <h2>BetterClimber</h2>
+            <p class="desc">Track your climbing sessions, monitor progress, and push your limits on the wall.</p>
+            <div class="links">
+                <a href="betterclimber/">About this app</a>
+            </div>
+            <div class="badges">
+                <a class="badge" href="https://play.google.com/store/apps/details?id=com.clcheles.BetterClimber"
+                    target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924L12.574 12.01 1.313 23.049a1.087 1.087 0 0 1-.114-.508V1.433c0-.2.044-.39.138-.509zM13.554 12.99l3.252 3.23-9.28 5.273L13.554 12.99zm0-1.96L7.526 2.507l9.281 5.274-3.252 3.249z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">GET IT ON</span>
+                        <span class="main">Google Play</span>
+                    </div>
+                </a>
+                <a class="badge" href="https://apps.apple.com/us/app/betterclimber/id6758965407" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">DOWNLOAD ON THE</span>
+                        <span class="main">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BetterLife -->
+        <div class="card">
+            <img class="icon" src="img/betterlife-icon.png" alt="BetterLife icon">
+            <h2>BetterLife</h2>
+            <p class="desc">AI-powered voice journaling with Wheel of Life tracking. 100% offline and private.</p>
+            <div class="links">
+                <a href="betterlife/">About this app</a>
+            </div>
+            <div class="badges">
+                <a class="badge" href="https://play.google.com/store/apps/details?id=com.clcheles.BetterLife"
+                    target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924L12.574 12.01 1.313 23.049a1.087 1.087 0 0 1-.114-.508V1.433c0-.2.044-.39.138-.509zM13.554 12.99l3.252 3.23-9.28 5.273L13.554 12.99zm0-1.96L7.526 2.507l9.281 5.274-3.252 3.249z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">GET IT ON</span>
+                        <span class="main">Google Play</span>
+                    </div>
+                </a>
+                <a class="badge" href="https://apps.apple.com/us/app/betterlife-wheel-of-life/id6759474204"
+                    target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">DOWNLOAD ON THE</span>
+                        <span class="main">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BetterDog -->
+        <div class="card">
+            <img class="icon" src="img/betterdog-icon.png" alt="BetterDog icon">
+            <h2>BetterDog</h2>
+            <p class="desc">Train smarter with a professional clicker, sound library, and private dog profile tracking.
+            </p>
+            <div class="links">
+                <a href="betterdog/">About this app</a>
+            </div>
+            <div class="badges">
+                <a class="badge" href="https://play.google.com/store/apps/details?id=com.clcheles.betterdog"
+                    target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924L12.574 12.01 1.313 23.049a1.087 1.087 0 0 1-.114-.508V1.433c0-.2.044-.39.138-.509zM13.554 12.99l3.252 3.23-9.28 5.273L13.554 12.99zm0-1.96L7.526 2.507l9.281 5.274-3.252 3.249z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">GET IT ON</span>
+                        <span class="main">Google Play</span>
+                    </div>
+                </a>
+                <a class="badge" href="https://apps.apple.com/gb/app/betterdog-trainer/id6759584174" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">DOWNLOAD ON THE</span>
+                        <span class="main">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BetterPawPlay -->
+        <div class="card">
+            <img class="icon" src="img/betterpawplay-icon.png" alt="BetterPawPlay icon">
+            <h2>BetterPawPlay</h2>
+            <p class="desc">Tablet games designed for dogs and cats. Paw-friendly touch targets, species-appropriate
+                colors, and completely free.</p>
+            <div class="links">
+                <a href="betterpawplay/">About this app</a>
+            </div>
+            <div class="badges">
+                <span class="badge coming-soon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924L12.574 12.01 1.313 23.049a1.087 1.087 0 0 1-.114-.508V1.433c0-.2.044-.39.138-.509zM13.554 12.99l3.252 3.23-9.28 5.273L13.554 12.99zm0-1.96L7.526 2.507l9.281 5.274-3.252 3.249z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">COMING SOON ON</span>
+                        <span class="main">Google Play</span>
+                    </div>
+                </span>
+                <a class="badge" href="https://apps.apple.com/us/app/betterpawplay/id6760363746" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">DOWNLOAD ON THE</span>
+                        <span class="main">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- BetterStart -->
+        <div class="card">
+            <img class="icon" src="img/betterstart-icon.png" alt="BetterStart icon">
+            <h2>BetterStart</h2>
+            <p class="desc">The ADHD toolkit that works on your worst days. No streaks, no guilt, no subscriptions.</p>
+            <div class="links">
+                <a href="betterstart/">About this app</a>
+            </div>
+            <div class="badges">
+                <span class="badge coming-soon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924L12.574 12.01 1.313 23.049a1.087 1.087 0 0 1-.114-.508V1.433c0-.2.044-.39.138-.509zM13.554 12.99l3.252 3.23-9.28 5.273L13.554 12.99zm0-1.96L7.526 2.507l9.281 5.274-3.252 3.249z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">COMING SOON ON</span>
+                        <span class="main">Google Play</span>
+                    </div>
+                </span>
+                <span class="badge coming-soon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z" />
+                    </svg>
+                    <div class="badge-text">
+                        <span class="small">COMING SOON ON</span>
+                        <span class="main">App Store</span>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <!-- Placeholder for future apps -->
+        <div class="card" style="border-style: dashed; opacity: 0.5;">
+            <div class="icon-emoji">✦</div>
+            <h2>Coming Soon</h2>
+            <p class="desc">More apps are on the way. This page will grow as the family does.</p>
+            <div class="links"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; <span id="year"></span> Better Apps. All rights reserved.
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            html.setAttribute('data-theme', saved);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.setAttribute('data-theme', 'light');
+        }
+        toggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next === 'dark' ? '' : 'light');
+            if (next === 'dark') html.removeAttribute('data-theme');
+            localStorage.setItem('theme', next);
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>

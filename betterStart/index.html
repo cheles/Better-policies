@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterStart — The ADHD Toolkit That Works on Your Worst Days</title>
+    <meta name="description"
+        content="BetterStart: 3 simple tools for ADHD brains. No streaks, no guilt, no subscriptions. Count without shame, start without deciding, check in without judgment. £4.99 once. Done.">
+    <meta property="og:title" content="BetterStart — The ADHD Toolkit That Works on Your Worst Days">
+    <meta property="og:description"
+        content="No streaks. No guilt. No subscriptions. Just tools that actually help. 3 modules built for bad brain days first.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://betterstart.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BetterStart — ADHD Toolkit">
+    <meta name="twitter:description"
+        content="The ADHD toolkit that works on your worst days. No streaks. No guilt. £4.99 once.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #2d2d3a;
+            background: #F8F7F4;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: #555;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .top-nav-links a:hover {
+            color: #6C5CE7;
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: #6C5CE7;
+            font-weight: 600;
+        }
+
+        .top-nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            color: #1a1a2e;
+            border-color: #6C5CE7;
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        [data-theme="dark"] .top-nav {
+            background: rgba(14, 14, 14, 0.85);
+            border-bottom-color: #2a2a2a;
+        }
+
+        [data-theme="dark"] .top-nav-links a {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="dark"] .top-nav-links a:hover {
+            color: #fff;
+        }
+
+        [data-theme="dark"] .top-nav-links a.active {
+            color: #6C5CE7;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            color: #999;
+            border-color: #2a2a2a;
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            color: #e5e5e5;
+            border-color: #6C5CE7;
+        }
+
+        /* ===== DARK THEME — PAGE-WIDE ===== */
+        [data-theme="dark"] body {
+            background: #0e0e0e;
+            color: #e5e5e5;
+        }
+
+        [data-theme="dark"] .section-title {
+            color: #e5e5e5;
+        }
+
+        [data-theme="dark"] .section-label {
+            color: #a78bfa;
+        }
+
+        [data-theme="dark"] .section-subtitle {
+            color: #b0b0b0;
+        }
+
+        [data-theme="dark"] .module-section {
+            background: #0e0e0e;
+        }
+
+        [data-theme="dark"] .module-section:nth-child(even) {
+            background: #151515;
+        }
+
+        [data-theme="dark"] .module-name {
+            color: #e5e5e5;
+        }
+
+        [data-theme="dark"] .module-pitch {
+            color: #b0b0b0;
+        }
+
+        [data-theme="dark"] .module-key-message {
+            color: #a78bfa;
+            border-left-color: #a78bfa;
+        }
+
+        [data-theme="dark"] .feature-list li {
+            color: #ccc;
+        }
+
+        [data-theme="dark"] .feature-list li .feat-icon {
+            background: rgba(108, 92, 231, 0.2);
+        }
+
+        /* Quotes */
+        [data-theme="dark"] .quotes-section {
+            background: #0e0e0e;
+        }
+
+        [data-theme="dark"] .quote-card {
+            background: #1a1a1a;
+            border-color: #2a2a2a;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] .quote-text {
+            color: #ddd;
+        }
+
+        [data-theme="dark"] .quote-card::before {
+            color: rgba(108, 92, 231, 0.25);
+        }
+
+        [data-theme="dark"] .quote-attr {
+            color: #a78bfa;
+        }
+
+        /* Privacy */
+        [data-theme="dark"] .privacy-section {
+            background: #151515;
+        }
+
+        [data-theme="dark"] .privacy-point {
+            color: #ddd;
+        }
+
+        [data-theme="dark"] .privacy-point .check {
+            background: rgba(108, 92, 231, 0.2);
+        }
+
+        /* Insight */
+        [data-theme="dark"] .insight-section {
+            background: #0e0e0e !important;
+        }
+
+        [data-theme="dark"] .insight-mockup {
+            background: rgba(108, 92, 231, 0.15);
+        }
+
+        [data-theme="dark"] .insight-mockup-message {
+            color: #ddd;
+        }
+
+        [data-theme="dark"] .insight-example {
+            background: #1a1a1a;
+            border-color: #2a2a2a;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] .insight-example-text {
+            color: #ccc;
+        }
+
+        [data-theme="dark"] .insight-badge {
+            background: rgba(108, 92, 231, 0.15);
+            border-color: rgba(108, 92, 231, 0.25);
+            color: #a78bfa;
+        }
+
+        [data-theme="dark"] .insight-mockup-btn {
+            background: rgba(108, 92, 231, 0.2);
+            color: #a78bfa;
+        }
+
+        /* Walkthrough intro section */
+        [data-theme="dark"] #walkthrough {
+            background: #0e0e0e;
+        }
+
+        /* Phone frame adjustments */
+        [data-theme="dark"] .phone-frame {
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounceDown {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            40% {
+                transform: translateY(12px) translateX(-50%);
+            }
+
+            60% {
+                transform: translateY(6px) translateX(-50%);
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-40px) scale(0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(108, 92, 231, 0.6);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: #121218;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 80px 24px 120px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(108, 92, 231, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6C5CE7, #8B7CF7);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            margin: 0 auto 32px;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: 0 12px 40px rgba(108, 92, 231, 0.4);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #6C5CE7, #a78bfa, #6C5CE7);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 40px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-btn:focus-visible {
+            outline: 3px solid #6C5CE7;
+            outline-offset: 3px;
+        }
+
+        .cta-btn-apple {
+            background: #fff;
+            color: #121218;
+        }
+
+        .cta-btn-apple:hover {
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn-google {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-btn-google:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.2);
+        }
+
+        .cta-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ===== BADGE ROW ===== */
+        .badge-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge-row a img,
+        .badge-row img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .badge-row .badge-soon {
+            position: relative;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .badge-soon .soon-label {
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #6C5CE7;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounceDown 2s ease infinite;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 28px;
+            z-index: 1;
+        }
+
+        .scroll-indicator a {
+            color: inherit;
+        }
+
+        /* ===== SECTION BASICS ===== */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6C5CE7;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: #1a1a2e;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #6b6b80;
+            max-width: 600px;
+            margin-bottom: 60px;
+        }
+
+        /* ===== PHONE MOCKUP ===== */
+        .phone-frame {
+            width: 260px;
+            height: 520px;
+            background: #1a1a2e;
+            border-radius: 36px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 28px;
+            background: #1a1a2e;
+            border-radius: 0 0 16px 16px;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #121218;
+            border-radius: 26px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 44px 16px 16px;
+        }
+
+        /* ===== MODULE SECTIONS ===== */
+        .module-section {
+            padding: 80px 0;
+        }
+
+        .module-section:nth-child(even) {
+            background: #fff;
+        }
+
+        .module-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .module-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .module-text {
+            flex: 1;
+        }
+
+        .module-emoji {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .module-name {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            color: #1a1a2e;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .module-pitch {
+            font-size: 1.1rem;
+            color: #6b6b80;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .module-key-message {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #6C5CE7;
+            margin-bottom: 24px;
+            padding-left: 16px;
+            border-left: 3px solid #6C5CE7;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: #4a4a5a;
+        }
+
+        .feature-list li .feat-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ===== TALLY PHONE SCREEN ===== */
+        .tally-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .tally-card {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .tally-card-emoji {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tally-card-count {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .tally-card-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            display: block;
+        }
+
+        .tally-particle {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #6C5CE7;
+            animation: particleFloat 1.5s ease-out infinite;
+        }
+
+        .tally-summary {
+            margin-top: 12px;
+            background: rgba(108, 92, 231, 0.15);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .tally-summary span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+
+        /* ===== LAUNCH PHONE SCREEN ===== */
+        .launch-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            gap: 16px;
+            padding-top: 20px;
+        }
+
+        .launch-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6C5CE7, #8B7CF7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            line-height: 1.2;
+            box-shadow: 0 8px 30px rgba(108, 92, 231, 0.5);
+            animation: glowPulse 2.5s ease-in-out infinite;
+            cursor: default;
+        }
+
+        .launch-tasks {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        .launch-microsteps {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .launch-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .launch-step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(108, 92, 231, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* ===== ENERGY PHONE SCREEN ===== */
+        .energy-levels {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .energy-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .energy-row.active {
+            background: rgba(108, 92, 231, 0.2);
+            border-color: rgba(108, 92, 231, 0.4);
+        }
+
+        .energy-row-emoji {
+            font-size: 24px;
+        }
+
+        .energy-row-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            flex: 1;
+        }
+
+        .energy-row-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .energy-row-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: #6C5CE7;
+        }
+
+        .energy-suggestion {
+            margin-top: 12px;
+            background: rgba(108, 92, 231, 0.12);
+            border-radius: 12px;
+            padding: 12px;
+            width: 100%;
+        }
+
+        .energy-suggestion p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        .energy-suggestion p strong {
+            color: #a78bfa;
+        }
+
+        /* ===== WHY SECTION ===== */
+        .why-section {
+            background: #121218;
+            color: #fff;
+        }
+
+        .why-section .section-title {
+            color: #fff;
+        }
+
+        .why-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(108, 92, 231, 0.3);
+        }
+
+        .why-card-other {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            line-height: 1.5;
+        }
+
+        .why-card-better {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a78bfa;
+            line-height: 1.5;
+        }
+
+        /* ===== QUOTES SECTION ===== */
+        .quotes-section {
+            background: #F8F7F4;
+        }
+
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .quote-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(108, 92, 231, 0.15);
+            position: absolute;
+            top: 12px;
+            left: 24px;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.05rem;
+            color: #3a3a4a;
+            line-height: 1.7;
+            margin-bottom: 16px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-attr {
+            font-size: 0.85rem;
+            color: #6C5CE7;
+            font-weight: 600;
+        }
+
+        /* ===== PRIVACY SECTION ===== */
+        .privacy-section {
+            background: #fff;
+            text-align: center;
+        }
+
+        .privacy-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .privacy-section .section-title {
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .privacy-points {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .privacy-point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            color: #4a4a5a;
+            font-weight: 600;
+        }
+
+        .privacy-point .check {
+            width: 28px;
+            height: 28px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6C5CE7;
+            font-size: 14px;
+        }
+
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            background: linear-gradient(135deg, #121218 0%, #1a1a2e 100%);
+            color: #fff;
+            text-align: center;
+            padding: 100px 24px;
+        }
+
+        .final-cta .section-title {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .final-cta .price-line {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 36px;
+        }
+
+        .final-cta .closing {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #0d0d12;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            padding: 40px 24px;
+            font-size: 0.9rem;
+        }
+
+        footer .footer-heart {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        footer .footer-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        footer .footer-links a {
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.2s;
+        }
+
+        footer .footer-links a:hover {
+            color: #6C5CE7;
+        }
+
+        /* ===== DARK MODE BADGE ===== */
+        .dark-mode-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 28px;
+            backdrop-filter: blur(8px);
+        }
+
+        .dark-mode-badge span {
+            font-size: 1rem;
+        }
+
+        /* ===== ROULETTE OVERLAY MOCKUP ===== */
+        .roulette-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            animation: rouletteFadeIn 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes rouletteFadeIn {
+
+            0%,
+            30% {
+                opacity: 1;
+            }
+
+            70%,
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        .roulette-card {
+            background: #1e1e2e;
+            border-radius: 16px;
+            padding: 20px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(108, 92, 231, 0.4);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            min-width: 160px;
+        }
+
+        .roulette-card-label {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .roulette-card-task {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* ===== TALLY MILESTONE ACCENTS ===== */
+        .tally-card.milestone-bronze {
+            border-color: rgba(205, 127, 50, 0.5);
+        }
+
+        .tally-card.milestone-silver {
+            border-color: rgba(192, 192, 192, 0.5);
+        }
+
+        .tally-card.milestone-gold {
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        /* ===== MINI HEAT CALENDAR ===== */
+        .heat-calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .heat-day {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .heat-day.active-1 {
+            background: rgba(108, 92, 231, 0.25);
+        }
+
+        .heat-day.active-2 {
+            background: rgba(108, 92, 231, 0.45);
+        }
+
+        .heat-day.active-3 {
+            background: rgba(108, 92, 231, 0.7);
+        }
+
+        .heat-day.active-4 {
+            background: rgba(108, 92, 231, 1);
+        }
+
+        /* ===== ENERGY TIMELINE MINI ===== */
+        .energy-timeline {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            width: 100%;
+            height: 40px;
+            margin-top: 8px;
+            padding: 0 4px;
+        }
+
+        .energy-timeline-bar {
+            flex: 1;
+            border-radius: 3px 3px 0 0;
+            background: rgba(108, 92, 231, 0.6);
+            transition: height 0.3s;
+        }
+
+        .energy-timeline-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 2px 4px 0;
+        }
+
+        .energy-timeline-labels span {
+            font-size: 8px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .energy-weekly-stats {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .energy-weekly-stat {
+            flex: 1;
+            background: rgba(108, 92, 231, 0.12);
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .energy-weekly-stat-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #a78bfa;
+            display: block;
+        }
+
+        .energy-weekly-stat-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.4);
+            display: block;
+        }
+
+        /* ===== BRAIN SECTION ===== */
+        .brain-section {
+            background: #121218 !important;
+            color: #fff;
+        }
+
+        .brain-section .section-title {
+            color: #fff;
+        }
+
+        .brain-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .brain-section .module-name {
+            color: #fff;
+        }
+
+        .brain-section .module-pitch {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .brain-section .module-key-message {
+            color: #a78bfa;
+            border-left-color: #a78bfa;
+        }
+
+        .brain-section .feature-list li {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .brain-section .feat-icon {
+            background: rgba(108, 92, 231, 0.2);
+        }
+
+        /* Brain phone mockup internals */
+        .brain-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            width: 100%;
+            height: 80px;
+            padding: 0 8px;
+            margin-top: 8px;
+        }
+
+        .brain-bar-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .brain-bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            min-height: 8px;
+        }
+
+        .brain-bar-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .brain-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .brain-stat {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 10px 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .brain-stat-emoji {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .brain-stat-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            display: block;
+        }
+
+        .brain-stat-label {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.4);
+            display: block;
+        }
+
+        .brain-footer-note {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== INSIGHT SECTION ===== */
+        .insight-section {
+            background: #F8F7F4 !important;
+        }
+
+        .insight-mockup {
+            background: rgba(108, 92, 231, 0.08);
+            border-left: 3px solid #6C5CE7;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 420px;
+            margin: 0 auto 32px;
+        }
+
+        .insight-mockup-header {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6C5CE7;
+            margin-bottom: 8px;
+        }
+
+        .insight-mockup-message {
+            font-size: 1.05rem;
+            color: #2d2d3a;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .insight-mockup-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .insight-mockup-btn {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6C5CE7;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: default;
+        }
+
+        .insight-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .insight-example {
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .insight-example-emoji {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .insight-example-text {
+            font-size: 0.95rem;
+            color: #4a4a5a;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .insight-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(108, 92, 231, 0.08);
+            border: 1px solid rgba(108, 92, 231, 0.15);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #6C5CE7;
+            margin-top: 24px;
+        }
+
+        /* ===== HERO SUBMENU ===== */
+        .hero-submenu {
+            display: inline-flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 18px 40px rgba(108, 92, 231, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-submenu a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            min-width: 170px;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #6C5CE7;
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(108, 92, 231, 0.14);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .hero-submenu a:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(108, 92, 231, 0.2);
+            text-decoration: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+
+            .module-row,
+            .module-row.reverse {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .module-key-message {
+                border-left: none;
+                padding-left: 0;
+                border-bottom: 3px solid #6C5CE7;
+                padding-bottom: 12px;
+            }
+
+            .brain-section .module-key-message {
+                border-bottom-color: #a78bfa;
+            }
+
+            [data-theme="dark"] .module-key-message {
+                border-bottom-color: #a78bfa;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .privacy-points {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .module-section {
+                padding: 60px 0;
+            }
+
+            .phone-frame {
+                width: 230px;
+                height: 460px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-examples {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-mockup {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 20px 100px;
+            }
+
+            .hero-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+                border-radius: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .phone-frame {
+                width: 210px;
+                height: 420px;
+            }
+
+            .launch-btn {
+                width: 110px;
+                height: 110px;
+                font-size: 15px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-submenu {
+                display: flex;
+                border-radius: 24px;
+            }
+
+            .hero-submenu a {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/">BetterDog</a>
+                <a href="../betterpawplay/">BetterPawPlay</a>
+                <a href="../betterstart/" class="active">BetterStart</a>
+                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                    class="nav-linkedin">LinkedIn</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" role="banner">
+        <div class="hero-content">
+            <div class="hero-icon" role="img" aria-label="BetterStart app icon">
+                <img src="../img/betterstart-icon.png" alt="BetterStart"
+                    style="width:100%;height:100%;border-radius:24px;">
+            </div>
+            <h1><span>BetterStart</span></h1>
+            <p class="tagline">The ADHD toolkit that works on your worst days.</p>
+            <p class="subtitle">No streaks. No guilt. No subscriptions. Just tools that actually help.</p>
+            <div class="dark-mode-badge"><span>🌙</span> Dark mode by default. Your brain deserves less glare.</div>
+            <div class="badge-row">
+                <!-- TODO: replace .badge-soon with a live <a> once published on App Store -->
+                <span class="badge-soon">
+                    <img src="../img/app-store-badge.svg" alt="Download on the App Store">
+                    <span class="soon-label">Coming Soon</span>
+                </span>
+                <!-- TODO: replace .badge-soon with a live <a> once published on Google Play -->
+                <span class="badge-soon">
+                    <img src="../img/google-play-badge.png" alt="Get it on Google Play">
+                    <span class="soon-label">Coming Soon</span>
+                </span>
+            </div>
+            <nav class="hero-submenu" aria-label="BetterStart quick links">
+                <a href="#walkthrough">How It Works</a>
+                <a href="#why-title">Why BetterStart?</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </nav>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <a href="#walkthrough">↓</a>
+        </div>
+    </header>
+
+    <!-- ===== WALKTHROUGH INTRO ===== -->
+    <section id="walkthrough" aria-labelledby="walkthrough-title">
+        <div class="container" style="text-align: center;">
+            <p class="section-label fade-in">How It Works</p>
+            <h2 class="section-title fade-in" id="walkthrough-title">Three tools. That's the whole app.</h2>
+            <p class="section-subtitle fade-in" style="margin-left: auto; margin-right: auto;">
+                Not 47 features you'll never use. Just three things that actually help on the days your brain won't
+                cooperate.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== TALLY MODULE ===== -->
+    <section class="module-section" aria-labelledby="tally-title">
+        <div class="container">
+            <div class="module-row">
+                <div class="module-text fade-in-left">
+                    <span class="module-emoji" aria-hidden="true">📊</span>
+                    <h2 class="module-name" id="tally-title">Tally</h2>
+                    <p class="module-pitch">
+                        The anti-streak counter. Track the things you do without streaks, without shame.
+                        Missed a day? The app doesn't care. No red X's, no broken chains, no guilt trips.
+                        Watch the satisfying +1 float up with every tap, and see your cards earn coloured borders as
+                        your counts grow.
+                    </p>
+                    <p class="module-key-message">
+                        "Every habit app punishes you for missing days. Tally doesn't."
+                    </p>
+                    <ul class="feature-list" role="list">
+                        <li><span class="feat-icon" aria-hidden="true">🎨</span> Custom counters</li>
+                        <li><span class="feat-icon" aria-hidden="true">👆</span> Animated +1 particles</li>
+                        <li><span class="feat-icon" aria-hidden="true">🎉</span> Milestone accents</li>
+                        <li><span class="feat-icon" aria-hidden="true">📅</span> Heat calendar</li>
+                    </ul>
+                </div>
+                <div class="fade-in-right">
+                    <div class="phone-frame" role="img" aria-label="Tally module screenshot mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div
+                                style="font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 4px; width: 100%; text-align: left;">
+                                March 2026</div>
+                            <div
+                                style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; width: 100%; text-align: left;">
+                                Your Tallies</div>
+                            <div class="tally-grid">
+                                <div class="tally-card milestone-gold">
+                                    <span class="tally-card-emoji">💧</span>
+                                    <span class="tally-card-count">127</span>
+                                    <span class="tally-card-label">Water</span>
+                                    <span class="tally-particle">+1</span>
+                                </div>
+                                <div class="tally-card milestone-silver">
+                                    <span class="tally-card-emoji">🏃</span>
+                                    <span class="tally-card-count">53</span>
+                                    <span class="tally-card-label">Exercise</span>
+                                </div>
+                                <div class="tally-card milestone-bronze">
+                                    <span class="tally-card-emoji">🧘</span>
+                                    <span class="tally-card-count">31</span>
+                                    <span class="tally-card-label">Meditation</span>
+                                </div>
+                                <div class="tally-card">
+                                    <span class="tally-card-emoji">📖</span>
+                                    <span class="tally-card-count">12</span>
+                                    <span class="tally-card-label">Reading</span>
+                                </div>
+                            </div>
+                            <!-- Mini heat calendar -->
+                            <div class="heat-calendar">
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-1"></div>
+                                <div class="heat-day active-2"></div>
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-3"></div>
+                                <div class="heat-day active-1"></div>
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-2"></div>
+                                <div class="heat-day active-4"></div>
+                                <div class="heat-day active-1"></div>
+                                <div class="heat-day active-3"></div>
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-2"></div>
+                                <div class="heat-day active-1"></div>
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-3"></div>
+                                <div class="heat-day active-4"></div>
+                                <div class="heat-day active-2"></div>
+                                <div class="heat-day"></div>
+                                <div class="heat-day active-1"></div>
+                                <div class="heat-day active-3"></div>
+                            </div>
+                            <div class="tally-summary">
+                                <span>223 things tracked this month 🎉</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LAUNCH MODULE ===== -->
+    <section class="module-section" aria-labelledby="launch-title">
+        <div class="container">
+            <div class="module-row reverse">
+                <div class="module-text fade-in-right">
+                    <span class="module-emoji" aria-hidden="true">🚀</span>
+                    <h2 class="module-name" id="launch-title">Launch</h2>
+                    <p class="module-pitch">
+                        Can't start? This module picks for you. Dump all your tasks, press one button, and watch it spin
+                        through your tasks like a slot machine before landing on one.
+                        An on-device AI then breaks your task into tiny micro-steps — so small they feel effortless.
+                        Don't have to pick the "right" task. Just press the button and go.
+                    </p>
+                    <p class="module-key-message">
+                        "Can't decide what to do? Stop deciding. Just press the button."
+                    </p>
+                    <ul class="feature-list" role="list">
+                        <li><span class="feat-icon" aria-hidden="true">🧠</span> Brain dump</li>
+                        <li><span class="feat-icon" aria-hidden="true">🎰</span> Roulette picker</li>
+                        <li><span class="feat-icon" aria-hidden="true">�</span> AI micro-steps</li>
+                        <li><span class="feat-icon" aria-hidden="true">🤷</span> Zero pressure</li>
+                    </ul>
+                </div>
+                <div class="fade-in-left">
+                    <div class="phone-frame" role="img" aria-label="Launch module screenshot mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="launch-screen">
+                                <div style="font-size: 14px; color: rgba(255,255,255,0.4);">Ready when you are</div>
+                                <div class="launch-btn">Just<br>Start</div>
+                                <div class="launch-tasks">5 tasks waiting</div>
+                                <div class="launch-microsteps">
+                                    <div class="launch-step">
+                                        <span class="launch-step-dot"></span>
+                                        Open the document
+                                    </div>
+                                    <div class="launch-step">
+                                        <span class="launch-step-dot"></span>
+                                        Write one sentence
+                                    </div>
+                                    <div class="launch-step">
+                                        <span class="launch-step-dot"></span>
+                                        That's enough if you want
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Roulette overlay -->
+                            <div class="roulette-overlay">
+                                <div class="roulette-card">
+                                    <div class="roulette-card-label">🎰 picking...</div>
+                                    <div class="roulette-card-task">Write one sentence</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ENERGY MODULE ===== -->
+    <section class="module-section" aria-labelledby="energy-title">
+        <div class="container">
+            <div class="module-row">
+                <div class="module-text fade-in-left">
+                    <span class="module-emoji" aria-hidden="true">⚡</span>
+                    <h2 class="module-name" id="energy-title">Energy</h2>
+                    <p class="module-pitch">
+                        Quick daily energy check-in with smooth animations. Pick your level, get gentle suggestions, and
+                        watch your patterns emerge in a timeline history view.
+                        See weekly stats like your average energy and total check-ins. No grades, no scores, no
+                        judgment.
+                    </p>
+                    <p class="module-key-message">
+                        "Check in with yourself. No grades, no scores."
+                    </p>
+                    <ul class="feature-list" role="list">
+                        <li><span class="feat-icon" aria-hidden="true">⚡</span> Animated check-in</li>
+                        <li><span class="feat-icon" aria-hidden="true">📊</span> Timeline history</li>
+                        <li><span class="feat-icon" aria-hidden="true">📈</span> Weekly stats</li>
+                        <li><span class="feat-icon" aria-hidden="true">🔒</span> Privacy-first</li>
+                    </ul>
+                </div>
+                <div class="fade-in-right">
+                    <div class="phone-frame" role="img" aria-label="Energy module screenshot mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div
+                                style="font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 4px; width: 100%; text-align: left;">
+                                How's your energy?</div>
+                            <div
+                                style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; width: 100%; text-align: left;">
+                                Check In</div>
+                            <div class="energy-levels">
+                                <div class="energy-row">
+                                    <span class="energy-row-emoji">⚡</span>
+                                    <span class="energy-row-label">Supercharged</span>
+                                    <div class="energy-row-bar">
+                                        <div class="energy-row-bar-fill" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="energy-row">
+                                    <span class="energy-row-emoji">🔋</span>
+                                    <span class="energy-row-label">Good to go</span>
+                                    <div class="energy-row-bar">
+                                        <div class="energy-row-bar-fill" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div class="energy-row active">
+                                    <span class="energy-row-emoji">🙂</span>
+                                    <span class="energy-row-label">Okay-ish</span>
+                                    <div class="energy-row-bar">
+                                        <div class="energy-row-bar-fill" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                                <div class="energy-row">
+                                    <span class="energy-row-emoji">😴</span>
+                                    <span class="energy-row-label">Low battery</span>
+                                    <div class="energy-row-bar">
+                                        <div class="energy-row-bar-fill" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                                <div class="energy-row">
+                                    <span class="energy-row-emoji">🪫</span>
+                                    <span class="energy-row-label">Running on empty</span>
+                                    <div class="energy-row-bar">
+                                        <div class="energy-row-bar-fill" style="width: 10%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="energy-suggestion">
+                                <p><strong>Gentle nudge:</strong> Okay-ish is perfectly fine. Maybe start with something
+                                    small?</p>
+                            </div>
+                            <!-- Timeline history -->
+                            <div class="energy-timeline">
+                                <div class="energy-timeline-bar" style="height: 50%;"></div>
+                                <div class="energy-timeline-bar"
+                                    style="height: 75%; background: rgba(108, 92, 231, 0.8);"></div>
+                                <div class="energy-timeline-bar" style="height: 100%; background: #6C5CE7;"></div>
+                                <div class="energy-timeline-bar" style="height: 60%;"></div>
+                                <div class="energy-timeline-bar"
+                                    style="height: 25%; background: rgba(108, 92, 231, 0.35);"></div>
+                                <div class="energy-timeline-bar"
+                                    style="height: 85%; background: rgba(108, 92, 231, 0.9);"></div>
+                                <div class="energy-timeline-bar" style="height: 50%;"></div>
+                            </div>
+                            <div class="energy-timeline-labels">
+                                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                            </div>
+                            <!-- Weekly stats -->
+                            <div class="energy-weekly-stats">
+                                <div class="energy-weekly-stat">
+                                    <span class="energy-weekly-stat-value">3.4</span>
+                                    <span class="energy-weekly-stat-label">Avg Energy</span>
+                                </div>
+                                <div class="energy-weekly-stat">
+                                    <span class="energy-weekly-stat-value">7</span>
+                                    <span class="energy-weekly-stat-label">Check-ins</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== YOUR BRAIN DASHBOARD ===== -->
+    <section class="module-section brain-section" aria-labelledby="brain-title">
+        <div class="container">
+            <div class="module-row reverse">
+                <div class="module-text fade-in-right">
+                    <span class="module-emoji" aria-hidden="true">🧠</span>
+                    <h2 class="module-name" id="brain-title">Your Brain</h2>
+                    <p class="module-pitch">
+                        The app learns how you work. On-device. Private. Always.
+                        BetterStart quietly notices patterns in your energy, tasks, and habits. No cloud. No account.
+                        Just your phone, learning about you.
+                    </p>
+                    <p class="module-key-message">
+                        "See your patterns. Understand your rhythms. All without leaving your phone."
+                    </p>
+                    <ul class="feature-list" role="list">
+                        <li><span class="feat-icon" aria-hidden="true">📈</span> Energy patterns</li>
+                        <li><span class="feat-icon" aria-hidden="true">🚀</span> Task stats</li>
+                        <li><span class="feat-icon" aria-hidden="true">👆</span> Tally insights</li>
+                        <li><span class="feat-icon" aria-hidden="true">🔒</span> 100% on-device</li>
+                    </ul>
+                </div>
+                <div class="fade-in-left">
+                    <div class="phone-frame" role="img" aria-label="Brain dashboard screenshot mockup">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div
+                                style="font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 2px; width: 100%; text-align: left;">
+                                What we've noticed</div>
+                            <div
+                                style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; width: 100%; text-align: left;">
+                                Your Brain 🧠</div>
+                            <!-- Energy bar chart -->
+                            <div
+                                style="font-size: 10px; color: rgba(255,255,255,0.35); width: 100%; text-align: left; margin-bottom: 4px;">
+                                Energy this week</div>
+                            <div class="brain-chart">
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 50%; background: #6C5CE7;"></div>
+                                    <span class="brain-bar-label">M</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 80%; background: #8B7CF7;"></div>
+                                    <span class="brain-bar-label">T</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 65%; background: #7B6CF7;"></div>
+                                    <span class="brain-bar-label">W</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 40%; background: #9B8CF7;"></div>
+                                    <span class="brain-bar-label">T</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 90%; background: #a78bfa;"></div>
+                                    <span class="brain-bar-label">F</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 70%; background: #8B7CF7;"></div>
+                                    <span class="brain-bar-label">S</span>
+                                </div>
+                                <div class="brain-bar-col">
+                                    <div class="brain-bar" style="height: 55%; background: #6C5CE7;"></div>
+                                    <span class="brain-bar-label">S</span>
+                                </div>
+                            </div>
+                            <!-- Stats grid -->
+                            <div class="brain-stats-grid">
+                                <div class="brain-stat">
+                                    <span class="brain-stat-emoji">⚡</span>
+                                    <span class="brain-stat-value">3.4</span>
+                                    <span class="brain-stat-label">Avg Energy</span>
+                                </div>
+                                <div class="brain-stat">
+                                    <span class="brain-stat-emoji">🔥</span>
+                                    <span class="brain-stat-value">Tuesday</span>
+                                    <span class="brain-stat-label">Peak Day</span>
+                                </div>
+                                <div class="brain-stat">
+                                    <span class="brain-stat-emoji">🚀</span>
+                                    <span class="brain-stat-value">47</span>
+                                    <span class="brain-stat-label">Tasks Launched</span>
+                                </div>
+                                <div class="brain-stat">
+                                    <span class="brain-stat-emoji">🧘</span>
+                                    <span class="brain-stat-value">127</span>
+                                    <span class="brain-stat-label">Most Tapped</span>
+                                </div>
+                            </div>
+                            <div class="brain-footer-note">🔒 This data never leaves your phone.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AI INSIGHTS ===== -->
+    <section class="module-section insight-section" aria-labelledby="insights-title">
+        <div class="container" style="text-align: center;">
+            <p class="section-label fade-in">Smart Nudges</p>
+            <h2 class="section-title fade-in" id="insights-title">On-device AI that respects your privacy</h2>
+            <p class="section-subtitle fade-in" style="margin-left: auto; margin-right: auto;">
+                A small language model runs entirely on your phone to generate personalised micro-steps for every task.
+                Plus 7 built-in pattern rules for energy and habit insights. No cloud AI. No data leaving your device.
+                Secured against all 10 OWASP LLM threats.
+            </p>
+            <!-- InsightCard mockup -->
+            <div class="insight-mockup fade-in">
+                <div class="insight-mockup-header">💡 Insight</div>
+                <div class="insight-mockup-message">"You tend to have more energy on Tuesdays."</div>
+                <div class="insight-mockup-buttons">
+                    <span class="insight-mockup-btn">Got it</span>
+                    <span class="insight-mockup-btn">Tell me more</span>
+                </div>
+            </div>
+            <!-- Example insights -->
+            <div class="insight-examples">
+                <div class="insight-example fade-in">
+                    <span class="insight-example-emoji">🌅</span>
+                    <p class="insight-example-text">"You seem to get more done in the mornings."</p>
+                </div>
+                <div class="insight-example fade-in">
+                    <span class="insight-example-emoji">🔋</span>
+                    <p class="insight-example-text">"Your energy's been trending down lately. Maybe plan some rest?"</p>
+                </div>
+                <div class="insight-example fade-in">
+                    <span class="insight-example-emoji">🧘</span>
+                    <p class="insight-example-text">"You've meditated 50 times! That's consistency."</p>
+                </div>
+                <div class="insight-example fade-in">
+                    <span class="insight-example-emoji">🤖</span>
+                    <p class="insight-example-text">"Clean the kitchen" → 1. Grab a sponge 2. Wipe one counter 3. Done
+                        if you want</p>
+                </div>
+            </div>
+            <div class="insight-badge fade-in">🔒 All AI runs on-device. OWASP LLM Top 10 secured. Your data stays
+                yours.</div>
+        </div>
+    </section>
+
+    <!-- ===== WHY BETTERSTART? ===== -->
+    <section class="why-section" aria-labelledby="why-title">
+        <div class="container" style="text-align: center;">
+            <p class="section-label fade-in">Why BetterStart?</p>
+            <h2 class="section-title fade-in" id="why-title">Built different. On purpose.</h2>
+            <p class="section-subtitle fade-in" style="margin-left: auto; margin-right: auto;">
+                We didn't build another productivity app. We built the opposite.
+            </p>
+            <div class="why-grid">
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: 🔥 "Day 47 streak! Miss one day and lose it all."
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: Did a thing? Cool. Didn't? Also cool. 💜
+                    </div>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: "Choose from 47 features and 12 categories."
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: Three tools. That's it. Less is more on bad brain days.
+                    </div>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: "$9.99/month forever."
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: £4.99 once. Done. ✅
+                    </div>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: "Sync to cloud, create account, verify email..."
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: Open app. Use app. That's it.
+                    </div>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: "Generic insights powered by cloud AI."
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: On-device AI with OWASP security. No data leaves your phone. 🔒
+                    </div>
+                </div>
+                <div class="why-card fade-in">
+                    <div class="why-card-other">
+                        Other apps: "You're behind! 3 overdue tasks. 📊"
+                    </div>
+                    <div class="why-card-better">
+                        BetterStart: Low energy is information, not failure. Rest is valid. 🧠
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF ===== -->
+    <section class="quotes-section" aria-labelledby="quotes-title">
+        <div class="container" style="text-align: center;">
+            <p class="section-label fade-in">You're Not Alone</p>
+            <h2 class="section-title fade-in" id="quotes-title">We heard you.</h2>
+            <p class="section-subtitle fade-in" style="margin-left: auto; margin-right: auto;">
+                These are real frustrations from the ADHD community. We built BetterStart because we felt them too.
+            </p>
+            <div class="quotes-grid">
+                <div class="quote-card fade-in">
+                    <p class="quote-text">I hate that every habit tracker punishes me for bad days.</p>
+                    <p class="quote-attr">— r/ADHD</p>
+                </div>
+                <div class="quote-card fade-in">
+                    <p class="quote-text">I just need something that helps me START, not a whole productivity system.
+                    </p>
+                    <p class="quote-attr">— ADHD community</p>
+                </div>
+                <div class="quote-card fade-in">
+                    <p class="quote-text">Why does every app need an account? I just want to track my water.</p>
+                    <p class="quote-attr">— r/ADHD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRIVACY ===== -->
+    <section class="privacy-section" aria-labelledby="privacy-title">
+        <div class="container">
+            <div class="fade-in">
+                <div class="privacy-icon" aria-hidden="true">🔒</div>
+                <h2 class="section-title" id="privacy-title">Your data stays on your device. Period.</h2>
+                <p class="section-subtitle" style="margin-left: auto; margin-right: auto; text-align: center;">
+                    We don't want your data. We don't collect it. We don't have servers. Your phone, your business.
+                </p>
+                <div class="privacy-points">
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        No accounts
+                    </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        No cloud
+                    </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        No tracking
+                    </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        No ads
+                    </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        On-device AI
+                    </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        Encrypted backups
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta" aria-labelledby="final-cta-title">
+        <div class="container">
+            <div class="fade-in">
+                <h2 class="section-title" id="final-cta-title">Ready to start? (No pressure.)</h2>
+                <p class="price-line">£3.99. No subscriptions. No ads. Just tools.</p>
+                <div class="badge-row">
+                    <!-- TODO: replace .badge-soon with a live <a> once published on App Store -->
+                    <span class="badge-soon">
+                        <img src="../img/app-store-badge.svg" alt="Download on the App Store">
+                        <span class="soon-label">Coming Soon</span>
+                    </span>
+                    <!-- TODO: replace .badge-soon with a live <a> once published on Google Play -->
+                    <span class="badge-soon">
+                        <img src="../img/google-play-badge.png" alt="Get it on Google Play">
+                        <span class="soon-label">Coming Soon</span>
+                    </span>
+                </div>
+                <p class="closing">Built for the days your brain won't cooperate. We get it. 💜</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer role="contentinfo">
+        <p class="footer-heart">Made with 💜 for brains that work differently</p>
+        <p>&copy; 2026 BetterStart. All rights reserved.</p>
+        <nav class="footer-links" aria-label="Footer navigation">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:claudiu@adsdesign.ro">Support</a>
+        </nav>
+    </footer>
+
+    <!-- ===== SCROLL ANIMATIONS ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
+
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -40px 0px'
+                });
+
+                elements.forEach(function (el) {
+                    observer.observe(el);
+                });
+            } else {
+                // Fallback: show everything
+                elements.forEach(function (el) {
+                    el.classList.add('visible');
+                });
+            }
+        });
+    </script>
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+        } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-theme', 'dark');
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+
+</html>

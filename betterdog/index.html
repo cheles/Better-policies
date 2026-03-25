@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterDog — Train Smarter. Bond Deeper.</title>
+    <meta name="description"
+        content="Professional dog training toolkit with precision clicker, sound library, and progress tracking. Multiple dog profiles, training programs, and encrypted cloud backup. 100% private.">
+    <meta property="og:title" content="BetterDog — Clicker, Sounds & Progress">
+    <meta property="og:description"
+        content="Train smarter with a precision clicker, training sound library, session tracking, and multi-dog profiles. Privacy-first design.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <style>
+        :root {
+            --primary: #d97706;
+            --primary-light: #f59e0b;
+            --accent: #14b8a6;
+            --bg: #faf9f6;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --border: #e5e5e5;
+            --radius: 16px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #f59e0b;
+            --primary-light: #fbbf24;
+            --accent: #2dd4bf;
+            --bg: #0e0e0e;
+            --card: #1a1a1a;
+            --text: #e5e5e5;
+            --text-secondary: #999;
+            --border: #2a2a2a;
+        }
+
+        [data-theme="dark"] .top-nav {
+            background: rgba(14, 14, 14, 0.85);
+        }
+
+        [data-theme="dark"] .faq-toggle {
+            background: var(--card);
+        }
+
+        [data-theme="dark"] .delete-callout .step {
+            background: var(--card);
+            border-color: #7f1d1d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Top Nav ──────────────────────────────────────── */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .brand {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .top-nav .brand:hover {
+            text-decoration: none;
+        }
+
+        .top-nav .brand span {
+            color: var(--primary);
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .top-nav-links a:hover {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .top-nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        /* ── Hero ─────────────────────────────────────────── */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            background: linear-gradient(135deg, #d97706, #f59e0b, #fbbf24);
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero .app-logo {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge-row a img,
+        .badge-row img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-submenu {
+            display: inline-flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 18px 40px rgba(148, 86, 0, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-submenu a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            min-width: 170px;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(148, 86, 0, 0.14);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .hero-submenu a:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(148, 86, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .badge-soon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badge-soon img {
+            filter: grayscale(1) brightness(1.2);
+            opacity: 0.7;
+        }
+
+        .badge-soon .soon-label {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        /* ── Section ──────────────────────────────────────── */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        /* ── Highlights ───────────────────────────────────── */
+        .highlights {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+
+        .highlight-pill {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* ── Features Grid ────────────────────────────────── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ── Languages ────────────────────────────────────── */
+        .languages-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .lang-chip {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Privacy / Policy card ────────────────────────── */
+        .privacy {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+        }
+
+        .privacy h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        .privacy h3:first-child {
+            margin-top: 0;
+        }
+
+        .privacy p,
+        .privacy ul,
+        .privacy ol {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .privacy ul,
+        .privacy ol {
+            padding-left: 20px;
+        }
+
+        .privacy li {
+            margin-bottom: 6px;
+        }
+
+        /* ── Delete-account callout ───────────────────────── */
+        .delete-callout {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 16px;
+        }
+
+        .delete-callout h4 {
+            color: #b91c1c;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .delete-callout .steps {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0 8px;
+        }
+
+        .delete-callout .step {
+            background: #fff;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .delete-callout .arrow {
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        /* ── Footer ───────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 40px 16px;
+            }
+
+            .privacy {
+                padding: 24px 20px;
+            }
+
+            .delete-callout {
+                padding: 16px;
+            }
+
+            .hero-submenu {
+                display: flex;
+                border-radius: 24px;
+            }
+
+            .hero-submenu a {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .top-nav-links {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Top Nav ───────────────────────────────────────────── -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/" class="active">BetterDog</a>
+                <a href="../betterpawplay/">BetterPawPlay</a>
+                <a href="../betterstart/">BetterStart</a>
+                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                    class="nav-linkedin">LinkedIn</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
+    <header class="hero">
+        <img src="../img/betterdog-icon.png" alt="BetterDog app icon" class="app-logo">
+        <h1>BetterDog</h1>
+        <p class="tagline">Train smarter. Bond deeper. A professional clicker, sound library, and full training toolkit
+            — all in one app, completely private.</p>
+        <div class="badge-row">
+            <a href="https://play.google.com/store/apps/details?id=com.clcheles.betterdog" target="_blank"
+                rel="noopener">
+                <img src="../img/google-play-badge.png" alt="Get it on Google Play">
+            </a>
+            <a href="https://apps.apple.com/gb/app/betterdog-trainer/id6759584174" target="_blank" rel="noopener">
+                <img src="../img/app-store-badge.svg" alt="Download on the App Store">
+            </a>
+        </div>
+        <div class="highlights">
+            <span class="highlight-pill">Precision Clicker</span>
+            <span class="highlight-pill">6 Languages</span>
+            <span class="highlight-pill">Privacy First</span>
+            <span class="highlight-pill">Multi-Dog Profiles</span>
+        </div>
+        <nav class="hero-submenu" aria-label="BetterDog quick links">
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy &amp; Safety</a>
+            <a href="#delete-account">Delete Account</a>
+        </nav>
+    </header>
+
+    <!-- ── Features ──────────────────────────────────────────── -->
+    <section id="features">
+        <h2>Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🔔</div>
+                <h3>Precision Clicker</h3>
+                <p>Mark desired behaviors instantly with a responsive clicker. Customizable sound, haptic feedback, and
+                    tap-anywhere mode for fast, distraction-free training.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔊</div>
+                <h3>Training Sound Library</h3>
+                <p>Built-in collection of professional training sounds — whistles, markers, and tones. Play them
+                    on demand during sessions or use them for desensitization practice.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🐕</div>
+                <h3>Multiple Dog Profiles</h3>
+                <p>Create dedicated profiles for each of your dogs with photos, breed info, age, and individual training
+                    history. Switch between dogs effortlessly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📋</div>
+                <h3>Training Programs</h3>
+                <p>Follow structured training programs with step-by-step guidance. Track your progress through each
+                    level — from basic obedience to advanced skills.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Session History &amp; Stats</h3>
+                <p>Review every training session with duration, click count, and notes. Visualize trends over time to
+                    see how your dog is progressing.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏥</div>
+                <h3>Vet Records</h3>
+                <p>Keep vaccination dates, medication schedules, and vet visit notes organized in one place for each
+                    dog. Never miss an appointment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>Milestones</h3>
+                <p>Celebrate your dog's achievements — first sit, leash walking, recall mastery. Track milestones to see
+                    how far you've come together.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🍖</div>
+                <h3>Feeding Schedules</h3>
+                <p>Set up and track feeding times, portions, and dietary notes for each dog. Stay consistent with
+                    customizable feeding reminders.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⏰</div>
+                <h3>Reminders</h3>
+                <p>Customizable push notifications for training sessions, feeding times, vet appointments, and
+                    medications. Keep your routine on track.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📸</div>
+                <h3>Progress Photos</h3>
+                <p>Capture and organize photos to document your dog's growth and training journey. Compare progress
+                    visually over weeks and months.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🚶</div>
+                <h3>Walk Tracker</h3>
+                <p>Log walks with duration and distance. Build a consistent exercise routine and monitor your dog's
+                    daily activity levels.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📈</div>
+                <h3>Activity Index</h3>
+                <p>See a daily snapshot of your dog's overall activity — training sessions, walks, and engagement — all
+                    in one easy-to-read score.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">☁️</div>
+                <h3>Encrypted Cloud Backup</h3>
+                <p>Back up all your data — profiles, training history, vet records, photos — encrypted on your device
+                    before upload. Sign in with Google, Apple, or Email.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌙</div>
+                <h3>Dark Mode</h3>
+                <p>Full dark theme that follows your device's system appearance. Easier on the eyes during early morning
+                    or late evening training sessions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Languages ────────────────────────────────────────── -->
+    <section id="languages">
+        <h2>Available in 6 Languages</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
+            Full UI translation in every supported language — train in the language you're most comfortable with.
+        </p>
+        <div class="languages-bar">
+            <span class="lang-chip">🇬🇧 English</span>
+            <span class="lang-chip">🇫🇷 Français</span>
+            <span class="lang-chip">🇪🇸 Español</span>
+            <span class="lang-chip">🇩🇪 Deutsch</span>
+            <span class="lang-chip">🇮🇹 Italiano</span>
+            <span class="lang-chip">🇷🇴 Română</span>
+        </div>
+    </section>
+
+    <!-- ── Accessibility ────────────────────────────────────── -->
+    <section id="accessibility">
+        <h2>Accessibility</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 24px;">
+            BetterDog is designed to be usable by every trainer.
+        </p>
+        <div class="features" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+            <div class="feature-card">
+                <div class="icon">👁️‍🗨️</div>
+                <h3>VoiceOver &amp; TalkBack</h3>
+                <p>Interactive elements have accessibility labels, roles, and hints — fully navigable with screen
+                    readers on iOS and Android.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌙</div>
+                <h3>Dark Interface</h3>
+                <p>Full dark theme with automatic system appearance detection to reduce eye strain during early
+                    morning or evening sessions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📳</div>
+                <h3>Haptic Feedback</h3>
+                <p>Clicker provides tactile confirmation so you can train without looking at your screen — keep your
+                    eyes on your dog.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌍</div>
+                <h3>6 Languages</h3>
+                <p>Full UI in English, French, Spanish, German, Italian, and Romanian — use the app in your preferred
+                    language.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Privacy Policy ────────────────────────────────────── -->
+    <section id="privacy">
+        <h2>Privacy Policy</h2>
+        <div class="privacy">
+            <p><strong>Effective date:</strong> February 26, 2026</p>
+            <p>BetterDog ("the App") is developed by Claudiu Cheles ("we", "us"). This policy explains how we handle
+                your data.</p>
+
+            <h3>1. Data We Collect</h3>
+            <p>BetterDog is designed to be <strong>privacy-first</strong>. All dog profiles, training sessions, vet
+                records, photos, and app settings are stored <strong>entirely on your device</strong>.</p>
+            <ul>
+                <li><strong>Dog profiles &amp; training data:</strong> Stored locally on your device only. Never sent to
+                    our servers.</li>
+                <li><strong>Vet records &amp; feeding schedules:</strong> Stored locally. Never transmitted off your
+                    device.</li>
+                <li><strong>Photos:</strong> Progress photos are stored on your device. Only uploaded if you opt into
+                    cloud backup.</li>
+            </ul>
+
+            <h3>2. Optional Cloud Backup</h3>
+            <p>If you choose to sign in and enable cloud backup, your data is:</p>
+            <ul>
+                <li>Encrypted on your device before upload using AES encryption with a key stored in your device's
+                    secure keychain (iOS Keychain / Android Keystore).</li>
+                <li>Stored in Google Firebase/Firestore under your personal account scope.</li>
+                <li>Only accessible by you — we cannot read your encrypted data.</li>
+            </ul>
+            <p>Cloud backup is entirely optional. The app is fully functional without it.</p>
+
+            <h3>3. Sign-In &amp; Authentication</h3>
+            <p>BetterDog offers three sign-in methods:</p>
+            <ul>
+                <li><strong>Google Sign-In:</strong> Available on Android and iOS.</li>
+                <li><strong>Apple Sign-In:</strong> Available on iOS. Uses a secure nonce-based authentication flow with
+                    Firebase.</li>
+                <li><strong>Email/Password:</strong> Available on all platforms. Passwords are handled by Firebase
+                    Authentication — we never see or store your password.</li>
+            </ul>
+            <p>Your display name and email address are used solely to authenticate your account for cloud backup. This
+                information is handled entirely within Google Firebase — we do not store, transmit, or share it on any
+                other server or with any third party.</p>
+
+            <h3>4. Notifications</h3>
+            <p>The app may request permission to send local push notifications for training reminders, feeding
+                schedules, and vet appointment alerts. These are scheduled entirely on your device and do not involve
+                any
+                external server.</p>
+
+            <h3>4.5. Permissions Overview</h3>
+            <p>BetterDog requests only the permissions needed for the features you choose to use:</p>
+            <ul>
+                <li><strong>Notifications:</strong> Used to deliver local reminders for feeding schedules, medication,
+                    training, and vet care. These reminders are created on your device.</li>
+                <li><strong>Camera:</strong> Used when you choose to take a profile photo or progress photo for your
+                    dog.</li>
+                <li><strong>Photo Library:</strong> Used when you choose an existing photo from your device for your
+                    dog's profile or progress tracking.</li>
+                <li><strong>Internet Connection:</strong> Required only for optional account sign-in, cloud backup,
+                    restore, and other cloud-based features. BetterDog remains usable offline for local-only features.
+                </li>
+                <li><strong>Vibration / Haptics:</strong> Used to provide tactile clicker feedback during training
+                    sessions.</li>
+                <li><strong>Audio Playback Control:</strong> Used to play clicker sounds and training sounds reliably,
+                    including when your device is in silent mode where supported.</li>
+            </ul>
+            <p>Permissions are requested in context when you use the related feature, not on first launch. If you deny a
+                permission, BetterDog will continue to work, but the related feature may be unavailable until you enable
+                that permission in your device settings.</p>
+
+            <h3>5. Photo Library</h3>
+            <p>The app accesses your photo library only when you choose to add a profile picture for your dog or select
+                a
+                progress photo. If you take a new photo, BetterDog uses your device camera only for that action. Photos
+                are
+                stored locally and only uploaded if cloud backup is enabled.</p>
+
+            <h3>6. Third-Party Services</h3>
+            <ul>
+                <li><strong>Firebase Authentication &amp; Firestore:</strong> Used only if you opt into cloud backup.
+                    Subject to <a href="https://firebase.google.com/support/privacy" target="_blank"
+                        rel="noopener">Google's Privacy Policy</a>.</li>
+                <li><strong>Google Sign-In:</strong> Used for authentication on Android and iOS. Subject to
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy
+                        Policy</a>.
+                </li>
+                <li><strong>Apple Sign-In:</strong> Used for authentication on iOS. Subject to
+                    <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy
+                        Policy</a>.
+                </li>
+                <li><strong>Google Play Billing / Apple In-App Purchase:</strong> Optional donations processed entirely
+                    through the platform's native billing system. Subject to
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's</a> /
+                    <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's</a>
+                    Privacy Policy.
+                </li>
+            </ul>
+            <p>We do not use any advertising SDKs, analytics trackers, or crash reporting services.</p>
+
+            <h3>7. Terms of Use</h3>
+            <p>Use of BetterDog is subject to the <a
+                    href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                    rel="noopener">Apple Standard End User License Agreement (EULA)</a>.</p>
+
+            <h3 id="delete-account">8. Account &amp; Data Deletion</h3>
+            <p>You are in full control of your data at all times.</p>
+
+            <div class="delete-callout">
+                <h4>Delete Your Account &amp; Data from the App</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Open the app and follow these steps:</p>
+                <div class="steps">
+                    <span class="step">Settings</span>
+                    <span class="arrow">→</span>
+                    <span class="step">Reset All Data</span>
+                    <span class="arrow">→</span>
+                    <span class="step">✅ "+ Delete cloud backups &amp; account data"</span>
+                    <span class="arrow">→</span>
+                    <span class="step">Confirm</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
+                    This permanently deletes your Firebase account, all cloud backups (encrypted dog profiles, training
+                    data, vet records, photos, settings), and any data stored in Firestore under your account.
+                    Local data on your device is also cleared.
+                </p>
+            </div>
+
+            <p style="margin-top: 16px;">
+                <strong>Alternative — by email:</strong> Send a request to
+                <a
+                    href="mailto:claudiu@betterclimber.app?subject=BetterDog%20Account%20Deletion%20Request">claudiu@betterclimber.app</a>
+                with the subject <em>"BetterDog Account Deletion Request"</em> and the email address used for sign-in.
+                We will process your request within 7 business days.
+            </p>
+
+            <p><strong>What gets deleted:</strong></p>
+            <ul>
+                <li>Your Firebase authentication account</li>
+                <li>All cloud backup data (encrypted dog profiles, training sessions, vet records, photos, settings)
+                </li>
+                <li>Any data stored in Google Firestore under your account</li>
+                <li>All local dog profiles, training history, photos, and settings on the device</li>
+            </ul>
+            <p><strong>What is NOT affected:</strong></p>
+            <ul>
+                <li>Google Play / App Store purchase records (managed by the platform)</li>
+            </ul>
+
+            <h3>9. Children's Privacy</h3>
+            <p>BetterDog is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+            <h3>10. Changes to This Policy</h3>
+            <p>We may update this policy from time to time. Changes will be reflected on this page with an updated
+                effective date.</p>
+
+            <h3>11. Contact</h3>
+            <p>If you have questions about this privacy policy, please contact us at:<br>
+                <a href="mailto:claudiu@betterclimber.app">claudiu@betterclimber.app</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────── -->
+    <footer>
+        <p>&copy; 2026 Claudiu Cheles. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="#features">Features</a> &middot;
+            <a href="#privacy">Privacy Policy</a> &middot;
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                rel="noopener">EULA</a> &middot;
+            <a href="#delete-account">Delete Account</a> &middot;
+            <a href="mailto:claudiu@betterclimber.app">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+        } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-theme', 'dark');
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

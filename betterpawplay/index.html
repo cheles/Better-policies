@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterPawPlay — Fun Games for Your Pets</title>
+    <meta name="description"
+        content="Tablet games designed for dogs and cats. Paw-friendly touch targets, species-appropriate colors, engaging sounds, and free to play. Your pet's data stays on your device.">
+    <meta property="og:title" content="BetterPawPlay — Fun Games for Your Pets">
+    <meta property="og:description"
+        content="Tablet games designed for dogs and cats. Pet-vision colors, paw-sized touch targets, and free to play.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #14b8a6;
+            --bg: #faf9f6;
+            --card: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555;
+            --border: #e5e5e5;
+            --radius: 16px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #818cf8;
+            --primary-light: #a5b4fc;
+            --accent: #2dd4bf;
+            --bg: #0e0e0e;
+            --card: #1a1a1a;
+            --text: #e5e5e5;
+            --text-secondary: #999;
+            --border: #2a2a2a;
+        }
+
+        [data-theme="dark"] .top-nav {
+            background: rgba(14, 14, 14, 0.85);
+        }
+
+        [data-theme="dark"] .delete-callout .step {
+            background: var(--card);
+            border-color: #7f1d1d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Top Nav ──────────────────────────────────────── */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav .brand {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .top-nav .brand:hover {
+            text-decoration: none;
+        }
+
+        .top-nav .brand span {
+            color: var(--primary);
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .top-nav-links a:hover {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .top-nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        /* ── Hero ─────────────────────────────────────────── */
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            background: linear-gradient(135deg, #6366f1, #818cf8, #a5b4fc);
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero .app-logo {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .badge-row a img,
+        .badge-row img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .hero-submenu {
+            display: inline-flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 18px 40px rgba(73, 58, 185, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-submenu a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            min-width: 170px;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(73, 58, 185, 0.14);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .hero-submenu a:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(73, 58, 185, 0.2);
+            text-decoration: none;
+        }
+
+        .badge-soon {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badge-soon img {
+            filter: grayscale(1) brightness(1.2);
+            opacity: 0.7;
+        }
+
+        .badge-soon .soon-label {
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        /* ── Highlights ───────────────────────────────────── */
+        .highlights {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+
+        .highlight-pill {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* ── Section ──────────────────────────────────────── */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        /* ── Features Grid ────────────────────────────────── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ── Languages ────────────────────────────────────── */
+        .languages-bar {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .lang-chip {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Privacy / Policy card ────────────────────────── */
+        .privacy {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+        }
+
+        .privacy h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 28px;
+            margin-bottom: 8px;
+        }
+
+        .privacy h3:first-child {
+            margin-top: 0;
+        }
+
+        .privacy p,
+        .privacy ul,
+        .privacy ol {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .privacy ul,
+        .privacy ol {
+            padding-left: 20px;
+        }
+
+        .privacy li {
+            margin-bottom: 6px;
+        }
+
+        /* ── Delete-data callout ──────────────────────────── */
+        .delete-callout {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-top: 16px;
+        }
+
+        .delete-callout h4 {
+            color: #b91c1c;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .delete-callout .steps {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 12px 0 8px;
+        }
+
+        .delete-callout .step {
+            background: #fff;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .delete-callout .arrow {
+            color: #b91c1c;
+            font-weight: 600;
+        }
+
+        /* ── Footer ───────────────────────────────────────── */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        footer a {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 40px 16px;
+            }
+
+            .privacy {
+                padding: 24px 20px;
+            }
+
+            .delete-callout {
+                padding: 16px;
+            }
+
+            .hero-submenu {
+                display: flex;
+                border-radius: 24px;
+            }
+
+            .hero-submenu a {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .top-nav-links {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Top Nav ───────────────────────────────────────────── -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/">BetterDog</a>
+                <a href="../betterpawplay/" class="active">BetterPawPlay</a>
+                <a href="../betterstart/">BetterStart</a>
+                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                    class="nav-linkedin">LinkedIn</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── Hero ──────────────────────────────────────────────── -->
+    <header class="hero">
+        <img src="../img/betterpawplay-icon.png" alt="BetterPawPlay app icon" class="app-logo">
+        <h1>BetterPawPlay</h1>
+        <p class="tagline">Tablet games designed for dogs and cats. Paw-friendly touch targets, species-appropriate
+            colors, engaging sounds, and free to play.</p>
+        <div class="badge-row">
+            <!-- TODO: replace .badge-soon with a live <a> once published on Google Play -->
+            <span class="badge-soon badge-soon-google">
+                <img src="../img/google-play-badge.png" alt="Coming soon on Google Play">
+                <span class="soon-label">Coming Soon</span>
+            </span>
+            <!-- App Store badge -->
+            <a href="https://apps.apple.com/us/app/betterpawplay/id6760363746" target="_blank"
+                rel="noopener noreferrer">
+                <img src="../img/app-store-badge.svg" alt="Download on the App Store">
+            </a>
+        </div>
+        <div class="highlights">
+            <span class="highlight-pill">Pet-Vision Colors</span>
+            <span class="highlight-pill">7 Languages</span>
+            <span class="highlight-pill">Privacy First</span>
+            <span class="highlight-pill">Free to Play</span>
+        </div>
+        <nav class="hero-submenu" aria-label="BetterPawPlay quick links">
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy &amp; Safety</a>
+            <a href="#delete-data">Delete Data</a>
+        </nav>
+    </header>
+
+    <!-- ── Features ──────────────────────────────────────────── -->
+    <section id="features">
+        <h2>Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🎯</div>
+                <h3>Tap Games</h3>
+                <p>Fun, full-screen games your pet plays by tapping the screen with their paw or nose. Large touch
+                    targets sized for animals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎨</div>
+                <h3>Pet-Vision Colors</h3>
+                <p>Games use species-appropriate color palettes — blues and yellows for dogs, blues and greens for cats
+                    — so your pet can actually see the game.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔊</div>
+                <h3>Engaging Sounds</h3>
+                <p>Squeaky toys, critter sounds, and reward effects tuned to the hearing range of dogs and cats
+                    (2000–5000 Hz).</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h3>Stats &amp; Scores</h3>
+                <p>Track high scores, sessions played, and total playtime for each game across all your pets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🐾</div>
+                <h3>Multiple Pet Profiles</h3>
+                <p>Create profiles for each pet with name, species, and breed. Games adapt colors based on whether your
+                    pet is a dog or cat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h3>Achievements</h3>
+                <p>Unlock achievements as your pet plays — track progress and celebrate milestones.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⏱️</div>
+                <h3>Session Timer</h3>
+                <p>Set a play timer (5–30 min) so games auto-stop — perfect for limiting screen time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h3>Screen Lock</h3>
+                <p>Lock the screen so your pet can't accidentally exit the game or open other apps.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📳</div>
+                <h3>Haptic Feedback</h3>
+                <p>Vibration feedback on taps keeps your pet engaged and reinforces successful interactions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌙</div>
+                <h3>Dark Mode</h3>
+                <p>Full dark theme that follows your device's system appearance or can be set manually.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Languages ────────────────────────────────────────── -->
+    <section id="languages">
+        <h2>Available in 7 Languages</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
+            Full UI translation in every supported language.
+        </p>
+        <div class="languages-bar">
+            <span class="lang-chip">🇬🇧 English</span>
+            <span class="lang-chip">🇫🇷 Français</span>
+            <span class="lang-chip">🇪🇸 Español</span>
+            <span class="lang-chip">🇩🇪 Deutsch</span>
+            <span class="lang-chip">🇮🇹 Italiano</span>
+            <span class="lang-chip">🇧🇷 Português</span>
+            <span class="lang-chip">🇷🇴 Română</span>
+        </div>
+    </section>
+
+    <!-- ── Privacy Policy ────────────────────────────────────── -->
+    <section id="privacy">
+        <h2>Privacy Policy</h2>
+        <div class="privacy">
+            <p><strong>Effective date:</strong> March 10, 2026</p>
+            <p>BetterPawPlay ("the App") is developed by Claudiu Cheles ("we", "us"). This policy explains how we
+                handle your data.</p>
+
+            <h3>1. Data We Collect</h3>
+            <p>BetterPawPlay is designed to be <strong>privacy-first</strong>. All pet profiles, game scores, settings,
+                and achievements are stored <strong>entirely on your device</strong>.</p>
+            <ul>
+                <li><strong>Pet profiles:</strong> Stored locally on your device only. Never sent to any server.</li>
+                <li><strong>Game scores &amp; stats:</strong> Stored locally. Never transmitted off your device.</li>
+                <li><strong>Settings &amp; preferences:</strong> Stored locally using on-device storage.</li>
+            </ul>
+
+            <h3>2. No Account or Sign-In</h3>
+            <p>BetterPawPlay does not require or offer any account creation or sign-in. There is no cloud backup, no
+                server communication, and no remote data storage.</p>
+
+            <h3>3. Network Communication</h3>
+            <p>BetterPawPlay keeps gameplay and pet data on-device. The app may contact Google AdMob servers to load a
+                small banner ad, but pet profiles, scores, achievements, and settings are not transmitted for gameplay.
+            </p>
+
+            <h3>4. Permissions Overview</h3>
+            <p>BetterPawPlay requests only the minimum permissions needed to function:</p>
+            <ul>
+                <li><strong>Vibration / Haptics (Android):</strong> Used to provide tactile feedback when pets tap
+                    the screen during games. Only triggered by in-game interactions.</li>
+                <li><strong>Audio Playback:</strong> Used to play game sounds, reward effects, and ambient audio.
+                    No microphone access is requested.</li>
+                <li><strong>Internet / Network Access:</strong> Used solely to load banner ads from Google AdMob.
+                    No gameplay data, pet profiles, scores, or settings are transmitted.</li>
+                <li><strong>App Tracking Transparency (iOS only):</strong> On iOS 14.5+, the app asks for permission
+                    to use Apple's advertising identifier (IDFA) before displaying personalized ads. If you decline,
+                    the app continues to work normally — you will simply see non-personalized ads instead. You can
+                    change this at any time in your device's Settings &gt; Privacy &gt; Tracking.</li>
+            </ul>
+            <p>BetterPawPlay does <strong>not</strong> request access to your camera, photo library, contacts,
+                microphone, Bluetooth, or location services.</p>
+
+            <h3>5. Third-Party Services &amp; Advertising</h3>
+            <p>BetterPawPlay uses <strong>Google AdMob</strong> to display a small banner ad. AdMob is provided by
+                Google and is subject to <a href="https://policies.google.com/privacy" target="_blank"
+                    rel="noopener">Google's Privacy Policy</a>.</p>
+            <p>To serve and measure ads, Google AdMob may collect the following device-level information:</p>
+            <ul>
+                <li><strong>Device identifiers:</strong> Advertising ID (IDFA on iOS, GAID on Android) — used to
+                    serve relevant ads and measure ad performance. On iOS, this is only accessed if you grant
+                    permission via the App Tracking Transparency prompt.</li>
+                <li><strong>Approximate location:</strong> Google may infer approximate (city-level) location from
+                    your IP address to serve geographically relevant ads. BetterPawPlay does <strong>not</strong>
+                    request GPS or precise location permission — no location data is read from your device's
+                    sensors.</li>
+                <li><strong>Device &amp; network info:</strong> Device model, OS version, screen size, language,
+                    and network type may be collected by the AdMob SDK for ad targeting and fraud prevention.</li>
+            </ul>
+            <p>We do not use third-party analytics, crash reporting, or any other tracking SDKs. We do not share
+                pet profiles, scores, achievements, or settings with advertisers or any third party.</p>
+
+            <h3>6. In-App Purchases</h3>
+            <p>BetterPawPlay is <strong>free to play</strong> with a small banner ad displayed during gameplay.
+                If you prefer an ad-free experience, you can purchase the <strong>"Remove Ads"</strong> upgrade
+                — a <strong>one-time payment</strong> that permanently removes all advertising from the app.</p>
+            <ul>
+                <li>The purchase is processed securely through the App Store (iOS) or Google Play (Android).</li>
+                <li>No subscription — you pay once and ads are gone forever.</li>
+                <li>Your purchase is linked to your store account and can be restored on other devices.</li>
+                <li>No personal payment information is collected or stored by the app.</li>
+            </ul>
+
+            <h3>7. Terms of Use</h3>
+            <p>Use of BetterPawPlay is subject to the <a
+                    href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                    rel="noopener">Apple Standard End User License Agreement (EULA)</a>.</p>
+
+            <h3 id="delete-data">8. Data Deletion</h3>
+            <p>You are in full control of your data at all times.</p>
+
+            <div class="delete-callout">
+                <h4>Delete All Data from the App</h4>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Open the app and follow these steps:</p>
+                <div class="steps">
+                    <span class="step">Settings</span>
+                    <span class="arrow">→</span>
+                    <span class="step">Reset All Data</span>
+                    <span class="arrow">→</span>
+                    <span class="step">Confirm</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
+                    This permanently deletes all pet profiles, game scores, achievements, and settings from your device.
+                </p>
+            </div>
+
+            <p style="margin-top: 16px;">Alternatively, uninstalling the app removes all stored data since nothing is
+                stored outside the app.</p>
+
+            <h3>9. Children's Privacy</h3>
+            <p>BetterPawPlay is designed for pets and their owners. We do not knowingly collect data from children under
+                13. The app collects no personal data from any user.</p>
+
+            <h3>10. Changes to This Policy</h3>
+            <p>We may update this policy from time to time. Changes will be reflected on this page with an updated
+                effective date.</p>
+
+            <h3>11. Contact</h3>
+            <p>If you have questions about this privacy policy, please contact us at:<br>
+                <a href="mailto:claudiu@adsdesign.ro">claudiu@adsdesign.ro</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────── -->
+    <footer>
+        <p>&copy; 2026 Claudiu Cheles. All rights reserved.</p>
+        <p style="margin-top: 8px;">
+            <a href="#features">Features</a> &middot;
+            <a href="#privacy">Privacy Policy</a> &middot;
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                rel="noopener">EULA</a> &middot;
+            <a href="#delete-data">Delete Data</a> &middot;
+            <a href="mailto:claudiu@adsdesign.ro">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+        } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-theme', 'dark');
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

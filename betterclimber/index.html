@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterClimber — AI Climbing Technique Analysis</title>
+    <meta name="description"
+        content="Review every climb, improve your technique, and keep your data private. BetterClimber delivers on-device AI climbing analysis with replay, heatmaps, and session insights.">
+    <meta property="og:title" content="BetterClimber — AI Climbing Technique Analysis">
+    <meta property="og:description"
+        content="On-device climbing analysis with replay, heatmaps, and privacy-first session review. Free and Pro plans available on iOS and Android.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://betterclimber.app">
+    <link rel="canonical" href="https://betterclimber.app">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <style>
+        :root {
+            --primary: #7f82f6;
+            --primary-light: #a5a7ff;
+            --accent: #6f73ef;
+            --bg: #f5f4ff;
+            --card: #ffffff;
+            --surface: #ffffff;
+            --surface-strong: #ffffff;
+            --surface-muted: #f1efff;
+            --text: #1a1a1a;
+            --text-muted: #555555;
+            --text-secondary: #555555;
+            --border: #e3e2f7;
+            --accent-glow: rgba(127, 130, 246, 0.18);
+            --green: #118a54;
+            --green-soft: #e9f7ef;
+            --blue: #6674f6;
+            --blue-soft: #eef1ff;
+            --orange-soft: #f2eeff;
+            --shadow-soft: rgba(0, 0, 0, 0.08);
+            --shadow-strong: rgba(0, 0, 0, 0.15);
+            --gradient: linear-gradient(135deg, #7f82f6, #8f90f8, #a19bff);
+            --hero-gradient: linear-gradient(135deg, #7d81f3 0%, #878af5 46%, #9a96fa 100%);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 14px;
+            --content-width: 900px;
+        }
+
+        [data-theme="dark"] {
+            --primary: #9295ff;
+            --primary-light: #b5b7ff;
+            --accent: #8a8df6;
+            --bg: #0e0e10;
+            --card: #1a1a1e;
+            --surface: #1a1a1e;
+            --surface-strong: #222228;
+            --surface-muted: #16161c;
+            --text: #e5e5e5;
+            --text-muted: #999;
+            --text-secondary: #999;
+            --border: #2a2a32;
+            --accent-glow: rgba(127, 130, 246, 0.25);
+            --green: #34d399;
+            --green-soft: #0f2a1f;
+            --blue: #818cf8;
+            --blue-soft: #161830;
+            --orange-soft: #1c1830;
+            --shadow-soft: rgba(0, 0, 0, 0.3);
+            --shadow-strong: rgba(0, 0, 0, 0.5);
+            --gradient: linear-gradient(135deg, #9295ff, #a0a2ff, #b3aeff);
+            --hero-gradient: linear-gradient(135deg, #5a5ef0 0%, #6568f2 46%, #7874f7 100%);
+        }
+
+        [data-theme="dark"] .top-nav {
+            background: rgba(14, 14, 16, 0.85);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .top-nav-links a:hover {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .top-nav-links a.nav-linkedin {
+            margin-left: auto;
+        }
+
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s, border-color 0.2s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+        .brand {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .brand:hover {
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--primary);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 24px 60px;
+            background: var(--hero-gradient);
+            color: #fff;
+        }
+
+        .app-logo {
+            width: 96px;
+            height: 96px;
+            border-radius: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin: 0 auto 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            gap: 0.45rem;
+            padding: 0.4rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            color: rgba(255, 255, 255, 0.88);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .eyebrow-dot {
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.06;
+            letter-spacing: -0.05em;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 .accent {
+            color: #ecebff;
+        }
+
+        .hero-lead {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 18px;
+            color: #fff;
+        }
+
+        .hero-proof {
+            max-width: 760px;
+            margin: 0 auto 32px;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.98rem;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: var(--radius-sm);
+            padding: 0.95rem 1rem;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .hero-submenu {
+            display: inline-flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 24px auto 0;
+            padding: 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow: 0 18px 40px rgba(61, 67, 168, 0.18);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .hero-submenu a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            min-width: 170px;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: var(--accent);
+            font-size: 0.95rem;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(61, 67, 168, 0.14);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .hero-submenu a:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(61, 67, 168, 0.2);
+            text-decoration: none;
+        }
+
+        .store-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+            padding: 0;
+            border-radius: 12px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .store-link img {
+            display: block;
+            height: 52px;
+            width: auto;
+        }
+
+        .secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .secondary-link:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 36px;
+        }
+
+        .highlight-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        section {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section-kicker {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.55rem;
+        }
+
+        .section-head {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+            max-width: 42rem;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-head h2 {
+            font-size: 2rem;
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+        }
+
+        .section-head p {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .step-card,
+        .feature-card,
+        .trust-card,
+        .pricing-card,
+        .faq-card,
+        .policy-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: none;
+        }
+
+        .step-card {
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            width: 2.3rem;
+            height: 2.3rem;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            color: #fff;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .step-card h3,
+        .feature-card h3,
+        .trust-card h3,
+        .pricing-card h3,
+        .faq-card h3,
+        .policy-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.55rem;
+        }
+
+        .step-card p,
+        .feature-card p,
+        .trust-card p,
+        .pricing-card p,
+        .faq-card p,
+        .policy-card p,
+        .policy-card li,
+        .pricing-card li {
+            color: var(--text-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .feature-card {
+            padding: 1.55rem;
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon.free {
+            background: var(--blue-soft);
+        }
+
+        .feature-icon.pro {
+            background: var(--orange-soft);
+        }
+
+        .pro-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-left: 0.4rem;
+            padding: 0.16rem 0.45rem;
+            border-radius: 999px;
+            background: #f59e0b;
+            color: #fff;
+            font-size: 0.66rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+            vertical-align: middle;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 1.2rem;
+        }
+
+        .pricing-card {
+            padding: 1.7rem;
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(217, 119, 6, 0.28);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-price {
+            font-size: 2.6rem;
+            line-height: 1;
+            letter-spacing: -0.05em;
+            margin: 0.8rem 0 0.5rem;
+        }
+
+        .pricing-subtitle {
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 800;
+            margin-right: 0.45rem;
+        }
+
+        .pricing-summary {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            background: var(--surface-muted);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .trust-card {
+            padding: 1.4rem;
+        }
+
+        .trust-list {
+            list-style: none;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .trust-list li {
+            padding: 0.95rem 1rem;
+            border-radius: 14px;
+            background: #fffdf9;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.96rem;
+        }
+
+        .trust-list strong {
+            display: block;
+            margin-bottom: 0.18rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .faq-card {
+            padding: 1.35rem;
+        }
+
+        .faq-card ul {
+            padding-left: 1.2rem;
+            margin-top: 0.65rem;
+        }
+
+        .faq-card li {
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 1.2rem;
+        }
+
+        .contact-card,
+        .troubleshoot-card {
+            padding: 1.55rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: none;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0 0.75rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 999px;
+            background: var(--gradient);
+            color: #fff;
+            font-weight: 800;
+            box-shadow: 0 10px 24px var(--accent-glow);
+        }
+
+        .support-note {
+            margin-top: 1rem;
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-sm);
+            background: var(--surface-muted);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .support-list {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .support-list li {
+            padding: 0.85rem 0.95rem;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: #fffdf9;
+            color: var(--text);
+        }
+
+        .support-list strong {
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .tip-box {
+            margin-bottom: 1rem;
+            background: var(--blue-soft);
+            border-left: 4px solid var(--blue);
+            border-radius: 0 16px 16px 0;
+            padding: 1rem 1.1rem;
+            color: var(--text);
+        }
+
+        .troubleshoot-card h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+        }
+
+        .troubleshoot-card h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .troubleshoot-card p {
+            color: var(--text-muted);
+        }
+
+        .policy-card {
+            padding: 2rem;
+        }
+
+        .policy-highlight {
+            margin-bottom: 1.4rem;
+            background: var(--green-soft);
+            border-left: 4px solid var(--green);
+            border-radius: 0 16px 16px 0;
+            padding: 1rem 1.15rem;
+            color: var(--text);
+        }
+
+        .policy-card h3 {
+            margin-top: 1.8rem;
+        }
+
+        .policy-card h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .policy-card ul {
+            padding-left: 1.2rem;
+            margin: 0.65rem 0 0.95rem;
+        }
+
+        .policy-card li {
+            margin-bottom: 0.45rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: var(--content-width);
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 980px) {
+
+            .pricing-grid,
+            .trust-grid,
+            .support-grid,
+            .faq-grid,
+            .features-grid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-lead {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 40px 16px;
+            }
+
+            .policy-card {
+                padding: 24px 20px;
+            }
+
+            .store-link,
+            .secondary-link {
+                width: 100%;
+            }
+
+            .hero-submenu {
+                display: flex;
+                border-radius: 24px;
+            }
+
+            .hero-submenu a {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .top-nav-links {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/" class="active">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/">BetterDog</a>
+                <a href="../betterpawplay/">BetterPawPlay</a>
+                <a href="../betterstart/">BetterStart</a>
+                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
+                    class="nav-linkedin">LinkedIn</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5" />
+                    <line x1="12" y1="1" x2="12" y2="3" />
+                    <line x1="12" y1="21" x2="12" y2="23" />
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                    <line x1="1" y1="12" x2="3" y2="12" />
+                    <line x1="21" y1="12" x2="23" y2="12" />
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img src="../img/betterclimber-icon.png" alt="BetterClimber app icon" class="app-logo">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>On-device climbing analysis</div>
+        <h1>BetterClimber</h1>
+        <p class="hero-lead">Review every climb. <span class="accent">Improve your technique.</span> BetterClimber
+            uses AI pose analysis to break down your movement, replay key moments, and show where you lose efficiency on
+            the wall.</p>
+        <div class="hero-proof">All analysis happens on your device. Videos and pose data are not uploaded to
+            external servers, no audio is recorded, and you can delete your data at any time.</div>
+        <div class="badge-row" id="download">
+            <a href="https://apps.apple.com/us/app/betterclimber/id6758965407" class="store-link app-store"
+                target="_blank" rel="noopener" aria-label="Download BetterClimber on the App Store">
+                <img src="../img/app-store-badge.svg" alt="Download on the App Store">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.clcheles.BetterClimber&amp;hl=en_GB"
+                class="store-link google-play" target="_blank" rel="noopener"
+                aria-label="Get BetterClimber on Google Play">
+                <img src="../img/google-play-badge.png" alt="Get it on Google Play">
+            </a>
+
+        </div>
+        <div class="highlights">
+            <span class="highlight-pill">33 body landmarks</span>
+            <span class="highlight-pill">Replay and heatmaps</span>
+            <span class="highlight-pill">Free tier + 7-day Pro trial</span>
+        </div>
+        <nav class="hero-submenu" aria-label="BetterClimber quick links">
+            <a href="#privacy">Privacy &amp; Safety</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#troubleshooting">Troubleshooting</a>
+        </nav>
+    </header>
+
+    <section id="how-it-works">
+        <div class="section-head">
+            <div class="section-kicker">How It Works</div>
+            <h2>Simple enough for first sessions, detailed enough for real review.</h2>
+            <p>BetterClimber is designed to be usable by new visitors and easy to understand for App Store and Google
+                Play reviewers checking permissions, privacy, and feature scope.</p>
+        </div>
+        <div class="steps">
+            <article class="step-card">
+                <div class="step-number">1</div>
+                <h3>Record</h3>
+                <p>Point your phone at the wall and start a session. The app uses camera access only when you actively
+                    record a climb. No audio is recorded.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">2</div>
+                <h3>Analyze</h3>
+                <p>AI pose detection tracks 33 body landmarks locally on your device to calculate stability, body
+                    tension, hip position, and movement smoothness.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-number">3</div>
+                <h3>Review</h3>
+                <p>Replay sessions, inspect movement hotspots, and compare your free and Pro review tools without your
+                    video data being uploaded to outside servers.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="section-head">
+            <div class="section-kicker">What You Get</div>
+            <h2>Built to show what your body actually did on the wall.</h2>
+            <p>The core experience is about helping climbers spot inefficiency, review technique, and keep a private
+                record of progress. Pro expands the depth of analysis, not the privacy model.</p>
+        </div>
+        <div class="features-grid">
+            <article class="feature-card">
+                <div class="feature-icon free">📊</div>
+                <h3>Real-time feedback</h3>
+                <p>See where your movement loses control with instant analysis of stability, body tension, hip position,
+                    and smoothness while you climb.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon free">🎬</div>
+                <h3>Session recording</h3>
+                <p>Keep a private record of climbs, grades, and progression so you can come back to important sessions
+                    later.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon free">🏆</div>
+                <h3>Goals and achievements</h3>
+                <p>Track progress with goals, streaks, and achievements that make technique improvement easier to follow
+                    over time.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon pro">🎯</div>
+                <h3>Advanced replay <span class="pro-chip">Pro</span></h3>
+                <p>Review climbs frame by frame with skeleton overlays so you can inspect the exact moment technique
+                    starts to break down.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon pro">🔥</div>
+                <h3>Movement heatmaps <span class="pro-chip">Pro</span></h3>
+                <p>Visualize where you spend time on the wall and spot movement patterns, hesitation points, and wasted
+                    effort.</p>
+            </article>
+            <article class="feature-card">
+                <div class="feature-icon pro">📁</div>
+                <h3>Import videos <span class="pro-chip">Pro</span></h3>
+                <p>Analyze climbing videos from your gallery with the same local processing model used for live session
+                    recording.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="section-head">
+            <div class="section-kicker">Free &amp; Pro</div>
+            <h2>Clear pricing, clear feature scope.</h2>
+            <p>Store reviewers should be able to see what is included, what requires Pro, and how purchases are handled.
+                Users should be able to understand the same thing without reading store metadata.</p>
+        </div>
+        <div class="pricing-grid">
+            <article class="pricing-card">
+                <h3>Free</h3>
+                <div class="pricing-price">£0</div>
+                <p class="pricing-subtitle">Keep the core experience forever.</p>
+                <ul>
+                    <li>Real-time pose analysis</li>
+                    <li>Session recording</li>
+                    <li>Basic replay</li>
+                    <li>Goals, streaks, and achievements</li>
+                    <li>Backup and restore support</li>
+                </ul>
+            </article>
+            <article class="pricing-card featured">
+                <h3>Pro</h3>
+                <div class="pricing-price">From £2.89</div>
+                <p class="pricing-subtitle">Monthly, yearly, or lifetime access with a 7-day free trial.</p>
+                <ul>
+                    <li>Advanced replay with skeleton overlay</li>
+                    <li>Movement heatmaps</li>
+                    <li>Imported video analysis</li>
+                    <li>Detailed movement scoring</li>
+                    <li>Video export with overlays</li>
+                </ul>
+                <div class="pricing-summary">
+                    <strong>Current plans:</strong> £2.89 monthly, £18.99 yearly, or £35.99 lifetime. In-app purchase
+                    transactions are handled entirely by Google Play or the Apple App Store.
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-head">
+            <div class="section-kicker">Privacy &amp; Safety</div>
+            <h2>Reviewer-friendly trust summary.</h2>
+            <p>This section surfaces the key answers Apple and Google reviewers typically look for before they read the
+                full policy text.</p>
+        </div>
+        <div class="trust-grid">
+            <article class="trust-card">
+                <h3>Quick facts</h3>
+                <ul class="trust-list">
+                    <li><strong>All analysis happens on-device.</strong> Videos and pose data are not uploaded to
+                        external servers.</li>
+                    <li><strong>No audio is recorded.</strong> The app uses the camera for climbing sessions only.</li>
+                    <li><strong>No analytics or ad SDKs.</strong> BetterClimber does not use tracking tools or ad
+                        networks.</li>
+                    <li><strong>Delete data anytime.</strong> Users can delete sessions, clear local app data, or
+                        uninstall the app.</li>
+                </ul>
+            </article>
+            <article class="trust-card">
+                <h3>Permission and purchase context</h3>
+                <ul class="trust-list">
+                    <li><strong>Camera permission</strong> is used only when a user actively records a climb.</li>
+                    <li><strong>Photo library access</strong> is requested only when a Pro user chooses to import an
+                        existing climbing video.</li>
+                    <li><strong>Payment details</strong> are not handled by BetterClimber. Purchases are processed by
+                        the platform app store.</li>
+                    <li><strong>Support contact</strong> is available at <a
+                            href="mailto:claudiu@betterclimber.app">claudiu@betterclimber.app</a>.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section id="support">
+        <div class="section-head">
+            <div class="section-kicker">Support</div>
+            <h2>Contact, troubleshooting, and subscription guidance on one page.</h2>
+            <p>This brings the practical support content from the standalone support page directly into the main landing
+                and policy experience, which is better for both users and store reviewers.</p>
+        </div>
+        <div class="support-grid">
+            <article class="contact-card">
+                <h3>Need help with BetterClimber?</h3>
+                <p>Questions about features, backups, purchases, or privacy can be handled directly by email.</p>
+                <a href="mailto:claudiu@betterclimber.app" class="contact-email">claudiu@betterclimber.app</a>
+                <div class="support-note">
+                    Subscriptions are managed by your device's app store.
+                    On Android use Google Play Store → Profile → Payments &amp; subscriptions.
+                    On iPhone use Settings → Apple ID → Subscriptions.
+                </div>
+            </article>
+            <article class="troubleshoot-card" id="troubleshooting">
+                <div class="tip-box"><strong>Quick fix:</strong> most issues can be resolved by force-closing and
+                    reopening the app, or restarting the device.</div>
+                <h3>Camera not working</h3>
+                <p>Check that BetterClimber has camera permission enabled in the device settings. The app only needs
+                    camera access while actively recording a climb.</p>
+                <h3>App running slowly</h3>
+                <p>Pose detection is computationally intensive. Close other apps in the background and clear cached
+                    storage if your phone is under heavy load.</p>
+                <h3>Sessions not saving</h3>
+                <p>Make sure the device has enough free storage. BetterClimber stores videos and pose landmark data
+                    locally, so very low storage can interrupt saves.</p>
+            </article>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-head">
+            <div class="section-kicker">FAQ</div>
+            <h2>Short answers to the questions users actually ask.</h2>
+            <p>The quick policy answers are still here, but this section now also covers product support, metrics,
+                backups, and Pro access.</p>
+        </div>
+        <div class="faq-grid">
+            <article class="faq-card">
+                <h3>How does BetterClimber analyze my climbing?</h3>
+                <p>BetterClimber uses on-device AI pose detection to track 33 body landmarks in real time. All
+                    processing happens on your phone or tablet, not on external servers.</p>
+            </article>
+            <article class="faq-card">
+                <h3>What do the efficiency metrics mean?</h3>
+                <ul>
+                    <li><strong>COM Stability:</strong> how steady your center of mass stays during moves.</li>
+                    <li><strong>Body Tension:</strong> how well you maintain body control on the wall.</li>
+                    <li><strong>Hip Proximity:</strong> how close your hips stay to the wall.</li>
+                    <li><strong>Movement Smoothness:</strong> how fluid and controlled your movement is.</li>
+                </ul>
+            </article>
+            <article class="faq-card">
+                <h3>Can I analyze videos I already recorded?</h3>
+                <p>Yes. BetterClimber Pro can import existing climbing videos from your gallery, then run local pose
+                    analysis, skeleton overlay, and movement heatmaps on-device.</p>
+            </article>
+            <article class="faq-card">
+                <h3>Where does my data go?</h3>
+                <p>It stays on your device unless you explicitly share a video or export a backup file.</p>
+            </article>
+            <article class="faq-card">
+                <h3>Does the app upload my videos or record sound?</h3>
+                <p>No. Session recordings and imported videos are processed locally, and BetterClimber does not record
+                    audio.</p>
+            </article>
+            <article class="faq-card">
+                <h3>How do I restore my data on a new device?</h3>
+                <p>Use Backup &amp; Restore in Settings. Your backup transfers session metadata, preferences, and other
+                    app data. Video files are not included because they are too large.</p>
+            </article>
+            <article class="faq-card">
+                <h3>The pose detection looks off. What should I check?</h3>
+                <ul>
+                    <li>Use good lighting so your body is clearly visible.</li>
+                    <li>Keep your full body inside the camera frame.</li>
+                    <li>Stabilize the phone with a tripod or solid support.</li>
+                    <li>Wear clothing that contrasts with the wall background.</li>
+                </ul>
+            </article>
+            <article class="faq-card">
+                <h3>Can I delete everything?</h3>
+                <p>Yes. Delete sessions individually from History, clear app data in device settings, or uninstall the
+                    app to remove all local BetterClimber data.</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="privacy">
+        <div class="section-head">
+            <div class="section-kicker">Full Privacy Policy</div>
+            <h2>The complete policy text remains on-page for reviewers and users.</h2>
+            <p>Nothing important is hidden behind another route. The summary above is for scannability; the full policy
+                below remains explicit and reviewer-accessible.</p>
+        </div>
+
+        <div class="policy-card">
+            <div class="policy-highlight"><strong>Privacy first:</strong> all pose analysis happens entirely on your
+                device. Videos and climbing data are never uploaded to external servers by BetterClimber.</div>
+
+            <h3>Data Collection</h3>
+            <p>BetterClimber collects and stores the following data <strong>locally on your device only</strong>:</p>
+            <ul>
+                <li><strong>Profile Information:</strong> Your chosen display name (optional)</li>
+                <li><strong>Session Recordings:</strong> Videos and pose data from your climbing sessions</li>
+                <li><strong>Imported Videos:</strong> When you import videos for analysis, pose data is extracted and
+                    stored locally</li>
+                <li><strong>App Preferences:</strong> Theme settings, goals, and achievements</li>
+                <li><strong>Usage Statistics:</strong> Session counts and personal bests for tracking your progress</li>
+            </ul>
+
+            <h3>Camera Access</h3>
+            <p>The app requires camera access to record your climbing sessions and perform real-time pose analysis. This
+                permission is used only when you actively record a session. <strong>No audio is recorded</strong> — the
+                app only captures video.</p>
+
+            <h3>Photo Library Access</h3>
+            <p>With the Pro video import feature, the app may request access to your photo library to let you select
+                existing climbing videos for analysis. Videos are processed locally and never uploaded.</p>
+
+            <h3>Data Storage</h3>
+            <p>All data is stored locally on your device using secure storage mechanisms provided by the operating
+                system. Data includes:</p>
+            <ul>
+                <li>Video files stored in app-private storage</li>
+                <li>Pose landmark data stored as JSON files</li>
+                <li>Settings and preferences stored in encrypted app storage</li>
+            </ul>
+
+            <h3>Data Sharing</h3>
+            <p>BetterClimber does <strong>not</strong> share your data with any third parties. The only way data leaves
+                your device is:</p>
+            <ul>
+                <li>When you explicitly choose to share a video using the share function</li>
+                <li>When you export a backup file to transfer to another device</li>
+            </ul>
+
+            <h3>In-App Purchases</h3>
+            <p>BetterClimber offers optional Pro features through in-app purchases (subscription or lifetime purchase).
+                Purchase transactions are handled entirely by the platform's app store (Google Play or Apple App Store)
+                and are subject to their respective privacy policies. We do not have access to your payment information.
+            </p>
+
+            <h3>Analytics &amp; Tracking</h3>
+            <p>BetterClimber does <strong>not</strong> use any analytics services, advertising SDKs, or tracking tools.
+                We do not collect any usage analytics or behavioral data.</p>
+
+            <h3>Children's Privacy</h3>
+            <p>BetterClimber is not directed at children under 13. We do not knowingly collect personal information from
+                children.</p>
+
+            <h3>Data Deletion</h3>
+            <p>You can delete all your data at any time by:</p>
+            <ul>
+                <li>Deleting individual sessions from the History page</li>
+                <li>Clearing app data through your device settings</li>
+                <li>Uninstalling the app (removes all local data)</li>
+            </ul>
+
+            <h3>Changes to This Policy</h3>
+            <p>We may update this privacy policy from time to time. Any changes will be reflected on this page with an
+                updated revision date.</p>
+
+            <h3>Contact</h3>
+            <p>Questions or concerns about privacy? Contact us at:<br>
+                <a href="mailto:claudiu@betterclimber.app">claudiu@betterclimber.app</a>
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; <span id="year"></span> BetterClimber. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#support">Support</a>
+                <a href="mailto:claudiu@betterclimber.app">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+        } else if (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-theme', 'dark');
+        }
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
