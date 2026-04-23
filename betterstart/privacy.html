@@ -58,56 +58,6 @@
             font-weight: 700;
         }
 
-        /* ===== TOP NAV ===== */
-        .top-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid #e5e5e5;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .top-nav-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 10px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .top-nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            flex: 1;
-            flex-wrap: wrap;
-        }
-
-        .top-nav-links a {
-            font-size: 0.82rem;
-            color: #555;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .top-nav-links a:hover {
-            color: #6C5CE7;
-            text-decoration: none;
-        }
-
-        .top-nav-links a.active {
-            color: #6C5CE7;
-            font-weight: 600;
-        }
-
-        .top-nav-links a.nav-linkedin {
-            margin-left: auto;
-        }
-
         /* ===== HEADER ===== */
         .page-header {
             background: linear-gradient(135deg, #6C5CE7, #8B7CF7, #a78bfa);
@@ -298,28 +248,13 @@
 
 <body>
 
-    <nav class="top-nav">
-        <div class="top-nav-inner">
-            <div class="top-nav-links">
-                <a href="../">BetterCorp</a>
-                <a href="../betterclimber/">BetterClimber</a>
-                <a href="../betterlife/">BetterLife</a>
-                <a href="../betterdog/">BetterDog</a>
-                <a href="../betterpawplay/">BetterPawPlay</a>
-                <a href="../betterstart/" class="active">BetterStart</a>
-                <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
-                    class="nav-linkedin">LinkedIn</a>
-            </div>
-        </div>
-    </nav>
-
     <!-- ===== HEADER ===== -->
     <header class="page-header">
         <div class="page-header-content">
             <a href="index.html" class="back-link">← Back to home</a>
             <div class="page-header-icon" aria-hidden="true">🔒</div>
-            <h1>Privacy <span>Policy</span></h1>
-            <p class="effective-date">Effective date: March 25, 2026</p>
+            <h1>Privacy Policy</h1>
+            <p class="effective-date">Effective date: April 22, 2026</p>
         </div>
     </header>
 
@@ -343,6 +278,7 @@
                 <li>Counter names and tap counts in the Tally module</li>
                 <li>Energy check-in entries in the Energy module</li>
                 <li>Your settings preferences (theme, display options)</li>
+                <li>Your Kids Mode password, if you enable parental controls (stored only on your device)</li>
             </ul>
             <p>BetterStart does not automatically collect any data. No device identifiers, no usage analytics, no
                 location data, no diagnostics. Nothing.</p>
@@ -442,7 +378,7 @@
 
         <div class="section">
             <p>BetterStart also includes smart insights and pattern recognition features. These are powered by pure
-                TypeScript rules running entirely on your device. No data is sent to any cloud AI service.</p>
+                rules running entirely on your device. No data is sent to any cloud AI service.</p>
         </div>
 
         <!-- 7. Children's Privacy -->
@@ -451,6 +387,11 @@
             <p>BetterStart does not knowingly collect personal information from children under the age of 13. Since the
                 app does not collect or transmit any data whatsoever, there is no mechanism through which children's
                 data could be gathered or shared.</p>
+            <p>BetterStart includes a <span class="highlight">Kids Mode</span> with password-protected parental
+                controls. When enabled, Kids Mode disables all AI features (the on-device language model is deleted
+                from the device) and falls back to curated, hand-written micro-steps. A parent or guardian sets a
+                password to enable Kids Mode, and the same password is required to disable it. The password is stored
+                only on the device and is never transmitted.</p>
             <p>If you believe a child under 13 has somehow provided personal information through the app, please contact
                 us at <a href="mailto:claudiu@adsdesign.ro">claudiu@adsdesign.ro</a> and we will address your concern.
             </p>
@@ -507,10 +448,13 @@
                     is low</li>
                 <li><strong>Save preferences locally:</strong> Stores your settings (theme, display options) on your
                     device so they're remembered next time you open the app</li>
+                <li><strong>Notifications</strong> (optional)<strong>:</strong> If you enable daily reminders in
+                    Settings, the app requests permission to send local notifications at the time you choose.
+                    Notifications are scheduled entirely on your device — no push server is involved</li>
             </ul>
             <p>BetterStart does <span class="highlight">not</span> request access to your camera, microphone,
-                location, contacts, calendar, photos, or any other sensitive data. The app does not use push
-                notifications and does not run in the background.</p>
+                location, contacts, calendar, photos, or any other sensitive data. The app does not run in the
+                background.</p>
         </div>
 
         <!-- 11. Third-Party Payment Processors -->

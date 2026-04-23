@@ -210,12 +210,8 @@
             color: #e5e5e5;
         }
 
-        [data-theme="dark"] .section-label {
-            color: #a78bfa;
-        }
-
         [data-theme="dark"] .section-subtitle {
-            color: #b0b0b0;
+            color: #999;
         }
 
         [data-theme="dark"] .module-section {
@@ -223,7 +219,7 @@
         }
 
         [data-theme="dark"] .module-section:nth-child(even) {
-            background: #151515;
+            background: #1a1a1a;
         }
 
         [data-theme="dark"] .module-name {
@@ -231,16 +227,11 @@
         }
 
         [data-theme="dark"] .module-pitch {
-            color: #b0b0b0;
-        }
-
-        [data-theme="dark"] .module-key-message {
-            color: #a78bfa;
-            border-left-color: #a78bfa;
+            color: #999;
         }
 
         [data-theme="dark"] .feature-list li {
-            color: #ccc;
+            color: #bbb;
         }
 
         [data-theme="dark"] .feature-list li .feat-icon {
@@ -259,24 +250,20 @@
         }
 
         [data-theme="dark"] .quote-text {
-            color: #ddd;
+            color: #ccc;
         }
 
         [data-theme="dark"] .quote-card::before {
             color: rgba(108, 92, 231, 0.25);
         }
 
-        [data-theme="dark"] .quote-attr {
-            color: #a78bfa;
-        }
-
         /* Privacy */
         [data-theme="dark"] .privacy-section {
-            background: #151515;
+            background: #1a1a1a;
         }
 
         [data-theme="dark"] .privacy-point {
-            color: #ddd;
+            color: #ccc;
         }
 
         [data-theme="dark"] .privacy-point .check {
@@ -293,7 +280,7 @@
         }
 
         [data-theme="dark"] .insight-mockup-message {
-            color: #ddd;
+            color: #ccc;
         }
 
         [data-theme="dark"] .insight-example {
@@ -303,28 +290,21 @@
         }
 
         [data-theme="dark"] .insight-example-text {
-            color: #ccc;
+            color: #bbb;
         }
 
         [data-theme="dark"] .insight-badge {
             background: rgba(108, 92, 231, 0.15);
             border-color: rgba(108, 92, 231, 0.25);
-            color: #a78bfa;
         }
 
         [data-theme="dark"] .insight-mockup-btn {
             background: rgba(108, 92, 231, 0.2);
-            color: #a78bfa;
         }
 
         /* Walkthrough intro section */
         [data-theme="dark"] #walkthrough {
             background: #0e0e0e;
-        }
-
-        /* Phone frame adjustments */
-        [data-theme="dark"] .phone-frame {
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
         }
 
         /* ===== ANIMATIONS ===== */
@@ -485,15 +465,17 @@
         .hero-icon {
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #6C5CE7, #8B7CF7);
             border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
             margin: 0 auto 32px;
             animation: float 3s ease-in-out infinite;
             box-shadow: 0 12px 40px rgba(108, 92, 231, 0.4);
+            overflow: hidden;
+        }
+
+        .hero-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .hero h1 {
@@ -1600,10 +1582,6 @@
                 border-bottom-color: #a78bfa;
             }
 
-            [data-theme="dark"] .module-key-message {
-                border-bottom-color: #a78bfa;
-            }
-
             .feature-list {
                 grid-template-columns: 1fr;
                 max-width: 300px;
@@ -1708,7 +1686,7 @@
                 <a href="../betterlife/">BetterLife</a>
                 <a href="../betterdog/">BetterDog</a>
                 <a href="../betterpawplay/">BetterPawPlay</a>
-                <a href="../betterstart/" class="active">BetterStart</a>
+                <a href="../betterStart/" class="active">BetterStart</a>
                 <a href="https://www.linkedin.com/in/claudiucheles/" target="_blank" rel="noopener"
                     class="nav-linkedin">LinkedIn</a>
             </div>
@@ -1736,17 +1714,14 @@
     <!-- ===== HERO ===== -->
     <header class="hero" role="banner">
         <div class="hero-content">
-            <div class="hero-icon" role="img" aria-label="BetterStart app icon">
-                <img src="../img/betterstart-icon.png" alt="BetterStart"
-                    style="width:100%;height:100%;border-radius:24px;">
-            </div>
+            <div class="hero-icon" role="img" aria-label="BetterStart app icon"><img src="../img/betterstart-icon.png" alt="BetterStart icon"></div>
             <h1><span>BetterStart</span></h1>
             <p class="tagline">The ADHD toolkit that works on your worst days.</p>
             <p class="subtitle">No streaks. No guilt. No subscriptions. Just tools that actually help.</p>
             <div class="dark-mode-badge"><span>🌙</span> Dark mode by default. Your brain deserves less glare.</div>
             <div class="badge-row">
-                <a href="https://apps.apple.com/us/app/betterstart-adhd-ai-toolkit/id6760917055" target="_blank"
-                    rel="noopener">
+                <a href="https://apps.apple.com/gr/app/betterstart-adhd-ai-toolkit/id6760917055" target="_blank"
+                    rel="noopener noreferrer">
                     <img src="../img/app-store-badge.svg" alt="Download on the App Store">
                 </a>
                 <!-- TODO: replace .badge-soon with a live <a> once published on Google Play -->
@@ -1887,8 +1862,8 @@
                     <ul class="feature-list" role="list">
                         <li><span class="feat-icon" aria-hidden="true">🧠</span> Brain dump</li>
                         <li><span class="feat-icon" aria-hidden="true">🎰</span> Roulette picker</li>
-                        <li><span class="feat-icon" aria-hidden="true">�</span> AI micro-steps</li>
-                        <li><span class="feat-icon" aria-hidden="true">🤷</span> Zero pressure</li>
+                        <li><span class="feat-icon" aria-hidden="true">🤖</span> AI micro-steps</li>
+                        <li><span class="feat-icon" aria-hidden="true">📌</span> Active task banner</li>
                     </ul>
                 </div>
                 <div class="fade-in-left">
@@ -2174,6 +2149,8 @@
             </div>
             <div class="insight-badge fade-in">🔒 All AI runs on-device. OWASP LLM Top 10 secured. Your data stays
                 yours.</div>
+            <div class="insight-badge fade-in" style="margin-top: 12px;">👶 Kids Mode: password-protected parental
+                controls disable all AI features instantly.</div>
         </div>
     </section>
 
@@ -2298,6 +2275,10 @@
                         <span class="check" aria-hidden="true">✓</span>
                         Encrypted backups
                     </div>
+                    <div class="privacy-point">
+                        <span class="check" aria-hidden="true">✓</span>
+                        Kids Mode
+                    </div>
                 </div>
             </div>
         </div>
@@ -2308,10 +2289,10 @@
         <div class="container">
             <div class="fade-in">
                 <h2 class="section-title" id="final-cta-title">Ready to start? (No pressure.)</h2>
-                <p class="price-line">£3.99. No subscriptions. No ads. Just tools.</p>
+                <p class="price-line">£4.99. No subscriptions. No ads. Just tools.</p>
                 <div class="badge-row">
-                    <a href="https://apps.apple.com/us/app/betterstart-adhd-ai-toolkit/id6760917055" target="_blank"
-                        rel="noopener">
+                    <a href="https://apps.apple.com/gr/app/betterstart-adhd-ai-toolkit/id6760917055" target="_blank"
+                        rel="noopener noreferrer">
                         <img src="../img/app-store-badge.svg" alt="Download on the App Store">
                     </a>
                     <!-- TODO: replace .badge-soon with a live <a> once published on Google Play -->
