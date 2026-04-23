@@ -229,6 +229,52 @@
             color: #6C5CE7;
         }
 
+        /* ===== NAV ===== */
+        .top-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .top-nav-links a {
+            font-size: 0.82rem;
+            color: #555;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .top-nav-links a:hover {
+            color: #6C5CE7;
+            text-decoration: none;
+        }
+
+        .top-nav-links a.active {
+            color: #6C5CE7;
+            font-weight: 600;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             .content {
@@ -247,6 +293,20 @@
 </head>
 
 <body>
+
+    <!-- ===== NAV ===== -->
+    <nav class="top-nav" aria-label="Main navigation">
+        <div class="top-nav-inner">
+            <div class="top-nav-links">
+                <a href="../">BetterCorp</a>
+                <a href="../betterclimber/">BetterClimber</a>
+                <a href="../betterlife/">BetterLife</a>
+                <a href="../betterdog/">BetterDog</a>
+                <a href="../betterpawplay/">BetterPawPlay</a>
+                <a href="../betterstart/" class="active">BetterStart</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- ===== HEADER ===== -->
     <header class="page-header">
