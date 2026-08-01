@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetterDog — Train Smarter. Bond Deeper.</title>
     <meta name="description"
-        content="Professional dog training toolkit with precision clicker, sound library, and progress tracking. Multiple dog profiles, training programs, and encrypted cloud backup. 100% private.">
+        content="Dog training toolkit with a precision clicker, private walk tracking, sound library, progress tracking, multiple dog profiles, and encrypted cloud backup.">
     <meta property="og:title" content="BetterDog — Clicker, Sounds & Progress">
     <meta property="og:description"
         content="Train smarter with a precision clicker, training sound library, session tracking, and multi-dog profiles. Privacy-first design.">
@@ -562,6 +562,7 @@
             <span class="highlight-pill">Precision Clicker</span>
             <span class="highlight-pill">6 Languages</span>
             <span class="highlight-pill">Privacy First</span>
+            <span class="highlight-pill">Private Walk Tracking</span>
             <span class="highlight-pill">Multi-Dog Profiles</span>
         </div>
         <nav class="hero-submenu" aria-label="BetterDog quick links">
@@ -638,8 +639,8 @@
             <div class="feature-card">
                 <div class="icon">🚶</div>
                 <h3>Walk Tracker</h3>
-                <p>Log walks with duration and distance. Build a consistent exercise routine and monitor your dog's
-                    daily activity levels.</p>
+                <p>Track duration, distance, and average pace while your screen is locked. BetterDog saves the walk
+                    summary and discards route coordinates when the walk ends.</p>
             </div>
             <div class="feature-card">
                 <div class="icon">📈</div>
@@ -716,13 +717,14 @@
     <section id="privacy">
         <h2>Privacy Policy</h2>
         <div class="privacy">
-            <p><strong>Effective date:</strong> February 26, 2026</p>
+            <p><strong>Effective date:</strong> August 1, 2026</p>
             <p>BetterDog ("the App") is developed by Claudiu Cheles ("we", "us"). This policy explains how we handle
                 your data.</p>
 
             <h3>1. Data We Collect</h3>
-            <p>BetterDog is designed to be <strong>privacy-first</strong>. All dog profiles, training sessions, vet
-                records, photos, and app settings are stored <strong>entirely on your device</strong>.</p>
+            <p>BetterDog is designed to be <strong>privacy-first</strong>. Dog profiles, training sessions, vet
+                records, completed walk summaries, photos, and app settings are stored on your device unless you
+                choose optional cloud backup.</p>
             <ul>
                 <li><strong>Dog profiles &amp; training data:</strong> Stored locally on your device only. Never sent to
                     our servers.</li>
@@ -730,17 +732,20 @@
                     device.</li>
                 <li><strong>Photos:</strong> Progress photos are stored on your device. Only uploaded if you opt into
                     cloud backup.</li>
+                <li><strong>Walk summaries:</strong> Completed-walk date, duration, distance, average pace, and the
+                    selected dog are stored locally. Route coordinates are not included in completed walk history.</li>
             </ul>
 
             <h3>2. Optional Cloud Backup</h3>
             <p>If you choose to sign in and enable cloud backup, your data is:</p>
             <ul>
-                <li>Encrypted on your device before upload using AES encryption with a key stored in your device's
-                    secure keychain (iOS Keychain / Android Keystore).</li>
+                <li>Encrypted on your device before upload using authenticated encryption.</li>
                 <li>Stored in Google Firebase/Firestore under your personal account scope.</li>
-                <li>Only accessible by you — we cannot read your encrypted data.</li>
+                <li>Protected by your Firebase account and Firestore access controls.</li>
             </ul>
-            <p>Cloud backup is entirely optional. The app is fully functional without it.</p>
+            <p>Cloud backup may include completed walk summaries, but it never includes route coordinates or the
+                temporary coordinate used during an active walk. Cloud backup is entirely optional. The app is fully
+                functional without it.</p>
 
             <h3>3. Sign-In &amp; Authentication</h3>
             <p>BetterDog offers three sign-in methods:</p>
@@ -755,13 +760,37 @@
                 information is handled entirely within Google Firebase — we do not store, transmit, or share it on any
                 other server or with any third party.</p>
 
-            <h3>4. Notifications</h3>
+            <h3>4. Location &amp; Walk Tracking</h3>
+            <p>Walk tracking is optional and begins only after you select a dog, tap <strong>Start walk</strong>, and
+                grant location permission.</p>
+            <ul>
+                <li><strong>Purpose:</strong> BetterDog uses precise device location to calculate walk distance and
+                    average pace. No external GPS accessory, map provider, geocoding service, or advertising service
+                    receives your route from BetterDog.</li>
+                <li><strong>Screen-locked use:</strong> Tracking continues while BetterDog is in the background or
+                    your screen is locked. Android uses a user-initiated foreground location service with a persistent
+                    walk notification; it does not request Android's restricted background-location permission. iOS
+                    uses background location authorization and may display its location indicator.</li>
+                <li><strong>On-device processing:</strong> Successive coordinates are processed locally. BetterDog
+                    keeps at most the latest accepted coordinate temporarily so an active walk can continue and
+                    recover. It does not build or retain a route history.</li>
+                <li><strong>Retention:</strong> The temporary coordinate is cleared when you pause, finish, discard,
+                    or reset the walk. A completed walk retains only its summary: dog, date and time, duration,
+                    distance, and average pace.</li>
+                <li><strong>Sharing:</strong> BetterDog does not upload route coordinates. Optional encrypted backup
+                    may include completed summaries only.</li>
+            </ul>
+            <p>Your phone's operating system may determine location using GPS, Wi-Fi, cellular signals, and platform
+                location services. Denying location permission disables walk tracking only; the rest of BetterDog
+                remains available.</p>
+
+            <h3>5. Notifications</h3>
             <p>The app may request permission to send local push notifications for training reminders, feeding
                 schedules, and vet appointment alerts. These are scheduled entirely on your device and do not involve
                 any
                 external server.</p>
 
-            <h3>4.5. Permissions Overview</h3>
+            <h3>6. Permissions Overview</h3>
             <p>BetterDog requests only the permissions needed for the features you choose to use:</p>
             <ul>
                 <li><strong>Notifications:</strong> Used to deliver local reminders for feeding schedules, medication,
@@ -770,6 +799,9 @@
                     dog.</li>
                 <li><strong>Photo Library:</strong> Used when you choose an existing photo from your device for your
                     dog's profile or progress tracking.</li>
+                <li><strong>Location:</strong> Used only during a walk you explicitly start. Android requests precise
+                    location for a visible foreground service. iOS requests precise and background location so
+                    tracking can continue while the app is backgrounded or the screen is locked.</li>
                 <li><strong>Internet Connection:</strong> Required only for optional account sign-in, cloud backup,
                     restore, and other cloud-based features. BetterDog remains usable offline for local-only features.
                 </li>
@@ -782,14 +814,14 @@
                 permission, BetterDog will continue to work, but the related feature may be unavailable until you enable
                 that permission in your device settings.</p>
 
-            <h3>5. Photo Library</h3>
+            <h3>7. Photo Library</h3>
             <p>The app accesses your photo library only when you choose to add a profile picture for your dog or select
                 a
                 progress photo. If you take a new photo, BetterDog uses your device camera only for that action. Photos
                 are
                 stored locally and only uploaded if cloud backup is enabled.</p>
 
-            <h3>6. Third-Party Services</h3>
+            <h3>8. Third-Party Services</h3>
             <ul>
                 <li><strong>Firebase Authentication &amp; Firestore:</strong> Used only if you opt into cloud backup.
                     Subject to <a href="https://firebase.google.com/support/privacy" target="_blank"
@@ -811,12 +843,12 @@
             </ul>
             <p>We do not use any advertising SDKs, analytics trackers, or crash reporting services.</p>
 
-            <h3>7. Terms of Use</h3>
+            <h3>9. Terms of Use</h3>
             <p>Use of BetterDog is subject to the <a
                     href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
                     rel="noopener">Apple Standard End User License Agreement (EULA)</a>.</p>
 
-            <h3 id="delete-account">8. Account &amp; Data Deletion</h3>
+            <h3 id="delete-account">10. Account &amp; Data Deletion</h3>
             <p>You are in full control of your data at all times.</p>
 
             <div class="delete-callout">
@@ -833,7 +865,8 @@
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 8px;">
                     This permanently deletes your Firebase account, all cloud backups (encrypted dog profiles, training
-                    data, vet records, photos, settings), and any data stored in Firestore under your account.
+                    data, walk summaries, vet records, photos, settings), and any data stored in Firestore under your
+                    account.
                     Local data on your device is also cleared.
                 </p>
             </div>
@@ -849,24 +882,26 @@
             <p><strong>What gets deleted:</strong></p>
             <ul>
                 <li>Your Firebase authentication account</li>
-                <li>All cloud backup data (encrypted dog profiles, training sessions, vet records, photos, settings)
+                <li>All cloud backup data (encrypted dog profiles, training sessions, walk summaries, vet records,
+                    photos, settings)
                 </li>
                 <li>Any data stored in Google Firestore under your account</li>
-                <li>All local dog profiles, training history, photos, and settings on the device</li>
+                <li>All local dog profiles, training history, walk summaries, temporary active-walk data, photos, and
+                    settings on the device</li>
             </ul>
             <p><strong>What is NOT affected:</strong></p>
             <ul>
                 <li>Google Play / App Store purchase records (managed by the platform)</li>
             </ul>
 
-            <h3>9. Children's Privacy</h3>
+            <h3>11. Children's Privacy</h3>
             <p>BetterDog is not directed at children under 13. We do not knowingly collect data from children.</p>
 
-            <h3>10. Changes to This Policy</h3>
+            <h3>12. Changes to This Policy</h3>
             <p>We may update this policy from time to time. Changes will be reflected on this page with an updated
                 effective date.</p>
 
-            <h3>11. Contact</h3>
+            <h3>13. Contact</h3>
             <p>If you have questions about this privacy policy, please contact us at:<br>
                 <a href="mailto:claudiu@betterclimber.app">claudiu@betterclimber.app</a>
             </p>
